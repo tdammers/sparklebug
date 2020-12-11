@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<rocket_engine name="sparklebug-stardrive">
+    <isp>100000</isp>
+    <maxthrottle>1.00</maxthrottle>
+    <minthrottle>0.60</minthrottle>
+    <sloxiflowmax>11.91</sloxiflowmax>
+    <slfuelflowmax>7.23</slfuelflowmax>
+</rocket_engine>

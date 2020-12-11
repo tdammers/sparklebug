@@ -1,0 +1,387 @@
+<?xml version="1.0"?>
+<propulsion>
+    <!-- LEFT MAIN -->
+    <engine file='main-engine'>
+        <location unit="M">
+            <x>  0 </x>
+            <y>-25 </y>
+            <z>  0 </z>
+        </location>
+        <feed>0</feed>
+        <thruster file="direct">
+            <location unit="M">
+                <x>0</x>
+                <y>-25</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+    <!-- RIGHT MAIN -->
+    <engine file='main-engine'>
+        <location unit="M">
+            <x>  0 </x>
+            <y> 25 </y>
+            <z>  0 </z>
+        </location>
+        <feed>0</feed>
+        <thruster file="direct">
+            <location unit="M">
+                <x>0</x>
+                <y>25</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+    <!-- STARDRIVE FORE -->
+    <engine file='stardrive'>
+        <location unit="M">
+            <x> 10 </x>
+            <y>  0 </y>
+            <z>  0 </z>
+        </location>
+        <feed>0</feed>
+        <feed>1</feed>
+        <thruster file="stardrive-nozzle">
+            <location unit="M">
+                <x>10</x>
+                <y>0</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>180</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+    <!-- STARDRIVE AFT -->
+    <engine file='stardrive'>
+        <location unit="M">
+            <x>-43</x>
+            <y>  0 </y>
+            <z>  0 </z>
+        </location>
+        <feed>0</feed>
+        <feed>1</feed>
+        <thruster file="stardrive-nozzle">
+            <location unit="M">
+                <x>-43</x>
+                <y>0</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- REACTION CONTROL SYSTEM (RCS) -->
+    <!-- #4: nose left -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>44</x>
+            <y>-4</y>
+            <z>2</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>44</x>
+                <y>-4</y>
+                <z>2</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>90</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #5: nose right -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>44</x>
+            <y>4</y>
+            <z>2</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>44</x>
+                <y>4</y>
+                <z>2</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>-90</yaw>
+            </orient>
+        </thruster>
+    </engine>
+    <!-- #6: tail left -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>-44</x>
+            <y>-4</y>
+            <z>-2</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>-44</x>
+                <y>-4</y>
+                <z>-2</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>90</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #7: tail right -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>-44</x>
+            <y>4</y>
+            <z>-2</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>-44</x>
+                <y>4</y>
+                <z>-2</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>0</pitch>
+                <yaw>-90</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #8: nose up -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>44</x>
+            <y>0</y>
+            <z>3</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>44</x>
+                <y>0</y>
+                <z>3</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>-90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #9: nose down -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>44</x>
+            <y>0</y>
+            <z>1</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>44</x>
+                <y>0</y>
+                <z>1</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+
+    <!-- #10: tail up -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>-44</x>
+            <y>0</y>
+            <z>-3</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>-44</x>
+                <y>0</y>
+                <z>-3</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>-90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #11: tail down -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>-44</x>
+            <y>0</y>
+            <z>-1</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>-44</x>
+                <y>0</y>
+                <z>-1</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #12: left wing up -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>0</x>
+            <y>-15</y>
+            <z>0</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>0</x>
+                <y>-15</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>-90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #13: left wing down -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>0</x>
+            <y>-15</y>
+            <z>0</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>0</x>
+                <y>-15</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #14: right wing up -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>0</x>
+            <y>15</y>
+            <z>0</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>0</x>
+                <y>15</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>-90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- #15: right wing down -->
+    <engine file='rcs-thruster'>
+        <feed>0</feed>
+        <feed>1</feed>
+        <location unit="M">
+            <x>0</x>
+            <y>15</y>
+            <z>0</z>
+        </location>
+        <thruster file="rcs-nozzle">
+            <location unit="M">
+                <x>0</x>
+                <y>15</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+
+    <!-- FUEL TANKS -->
+    <tank type="FUEL" number="0">
+        <location unit="M">
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </location>
+        <capacity unit="KG">50000</capacity>
+        <contents unit="KG">50000</contents>
+    </tank>
+    <tank type="OXIDIZER" number="1">
+        <location unit="M">
+            <x>0.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </location>
+        <capacity unit="KG">50000</capacity>
+        <contents unit="KG">50000</contents>
+    </tank>
+</propulsion>
+

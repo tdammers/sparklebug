@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
+<fdm_config
+  name="Sparklebug"
+  version="2.0"
+  release="ALPHA"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
+
+    <fileheader>
+        <author>Tobias Dammers</author>
+
+        <filecreationdate>2020-12-03</filecreationdate>
+        <version>0.1</version>
+        <description>Sparklebug</description>
+        <note>
+        </note>
+        <documentation>
+        </documentation>
+
+        <license>
+            <licenseName></licenseName>
+        </license>
+
+    </fileheader>
+
+    <metrics>
+        <wingarea       unit="M2">480</wingarea>        <!-- metrics/Sw-sqft  -->
+        <wingspan       unit="M" >12</wingspan>         <!-- metrics/bw-ft    -->
+        <wing_incidence unit="DEG">1</wing_incidence>   <!-- metrics/iw-deg   -->
+        <chord          unit="M" >20</chord>            <!-- metrics/cbarw-ft -->
+        <htailarea      unit="M2">32</htailarea>        <!-- metrics/Sh-sqft  -->
+        <htailarm       unit="M" >40</htailarm>         <!-- metrics/lh-ft    -->
+        <vtailarea      unit="M2">32</vtailarea>        <!-- metrics/Sv-sqft  -->
+        <vtailarm       unit="M" >40</vtailarm>         <!-- metrics/lv-ft    -->
+
+        <location name="AERORP" unit="M">
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+        </location>
+        <location name="EYEPOINT" unit="M">
+            <x>42</x>
+            <y>0</y>
+            <z>2</z>
+        </location>
+        <location name="VRP" unit="M">
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+        </location>
+    </metrics>
+
+    <mass_balance>
+        <ixx unit="SLUG*FT2"> 1.23e+07 </ixx>
+        <iyy unit="SLUG*FT2"> 2.43e+07 </iyy>
+        <izz unit="SLUG*FT2"> 3.52e+07 </izz>
+        <ixy unit="SLUG*FT2"> 0 </ixy>
+        <ixz unit="SLUG*FT2"> 0.74e+06 </ixz>
+        <iyz unit="SLUG*FT2"> 0 </iyz>
+        <emptywt unit="KG">128100</emptywt>
+        <location name="CG" unit="M">
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+        </location>
+    </mass_balance>
+
+
+    <ground_reactions file="sparklebug-ground-reactions"/>
+    <propulsion file="sparklebug-propulsion"/>
+    <flight_control file="sparklebug-fcs"/>
+    <aerodynamics file="sparklebug-aero"/>
+
+</fdm_config>

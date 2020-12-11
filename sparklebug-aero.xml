@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<aerodynamics name="sparklebug-aero">
+    <axis name="LIFT">
+        <function name="aero/coefficient/CLalpha">
+            <description>Main wing lift coefficient</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <value>10</value>
+                <sin>
+                    <property>aero/alpha-rad</property>
+                </sin>
+            </product>
+        </function>
+    </axis>
+    
+    <axis name="DRAG">
+        <function name="aero/coefficient/CD0">
+            <description>Parasitic drag.</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <value>0.5</value>
+            </product>
+        </function>
+        <function name="aero/coefficient/CDl">
+            <description>Induced drag.</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <value>15</value>
+                <sin>
+                    <property>aero/alpha-rad</property>
+                </sin>
+                <sin>
+                    <property>aero/alpha-rad</property>
+                </sin>
+            </product>
+        </function>
+    </axis>
+    
+    <axis name="SIDE">
+        <function name="aero/coefficient/CYb">
+            <description>Side_force_due_to_beta</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>aero/beta-rad</property>
+                <value>-1</value>
+            </product>
+        </function>
+    </axis>
+    
+    <axis name="ROLL">
+        <function name="aero/coefficient/Clb">
+            <description>Roll_moment_due_to_beta</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/beta-rad</property>
+                <value>-0.09</value>
+            </product>
+        </function>
+        
+        <function name="aero/coefficient/Clp">
+            <description>Roll_moment_due_to_roll_rate</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/bi2vel</property>
+                <property>velocities/p-aero-rad_sec</property>
+                <value>-2.0</value>
+            </product>
+        </function>
+        
+        <function name="aero/coefficient/Clr">
+            <description>Roll_moment_due_to_yaw_rate</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/bi2vel</property>
+                <property>velocities/r-aero-rad_sec</property>
+                <value>0.09</value>
+            </product>
+        </function>
+    </axis>
+    
+    
+    <axis name="PITCH">
+        <function name="aero/coefficient/Cmalpha">
+            <description>Pitch_moment_due_to_alpha</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/cbarw-ft</property>
+                <product>
+                    <value>-0.2</value>
+                    <property>aero/alpha-rad</property>
+                </product>
+            </product>
+        </function>
+        <function name="aero/coefficient/Cmq">
+            <description>Pitch_moment_due_to_pitch_rate</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/ci2vel</property>
+                <property>velocities/q-aero-rad_sec</property>
+                <value>-15.0</value>
+            </product>
+        </function>
+        <function name="aero/coefficient/Cmadot">
+            <description>Pitch_moment_due_to_alpha_rate</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/cbarw-ft</property>
+                <property>aero/ci2vel</property>
+                <property>aero/alphadot-rad_sec</property>
+                <value>-8.0</value>
+            </product>
+        </function>
+    </axis>
+    
+    <axis name="YAW">
+        <function name="aero/coefficient/Cnb">
+            <description>Yaw_moment_due_to_beta</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/beta-rad</property>
+                <value>0.26</value>
+            </product>
+        </function>
+        <function name="aero/coefficient/Cnr">
+            <description>Yaw_moment_due_to_yaw_rate</description>
+            <product>
+                <property>aero/qbar-psf</property>
+                <property>metrics/Sw-sqft</property>
+                <property>metrics/bw-ft</property>
+                <property>aero/bi2vel</property>
+                <property>velocities/r-aero-rad_sec</property>
+                <value>-0.35</value>
+            </product>
+        </function>
+    </axis>
+</aerodynamics>
+
+
+

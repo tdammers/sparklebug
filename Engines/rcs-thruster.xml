@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<rocket_engine name="sparklebug-rcs-thruster">
+    <isp>40000</isp>
+    <maxthrottle>1.00</maxthrottle>
+    <minthrottle>0.00</minthrottle>
+    <slfuelflowmax>1.2</slfuelflowmax>
+    <sloxiflowmax>1.8</sloxiflowmax>
+</rocket_engine>

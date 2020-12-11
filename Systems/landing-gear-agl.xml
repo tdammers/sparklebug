@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<PropertyList>
+    <filter>
+        <type>gain</type>
+        <input>
+            <expression>
+                <sum>
+                    <property>/position/altitude-agl-ft</property>
+                    <value>-44.1</value>
+                </sum>
+            </expression>
+        </input>
+        <output>/position/gear-agl-ft</output>
+    </filter>
+</PropertyList>

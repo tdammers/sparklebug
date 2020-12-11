@@ -1,0 +1,363 @@
+<PropertyList>
+
+<!-- FBW CONTROLLERS -->
+
+<!-- ATTITUDE CONTROLLERS -->
+<pi-simple-controller>
+    <name>FBW bank attitude controller</name>
+    <input>
+        <property>/orientation/roll-deg</property>
+    </input>
+    <reference>
+        <expression>
+            <product>
+                <property>/controls/flight/aileron</property>
+                <value>30</value>
+            </product>
+        </expression>
+    </reference>
+    <output><property>/fcs/fbw/target-p</property></output>
+    <Kp>0.2</Kp>
+    <u_min>-3.1415</u_min>
+    <u_max>3.1415</u_max>
+</pi-simple-controller>
+
+<pi-simple-controller>
+    <name>FBW pitch attitude controller</name>
+    <input>
+        <property>/orientation/pitch-deg</property>
+    </input>
+    <reference>
+        <expression>
+            <product>
+                <property>/controls/flight/elevator</property>
+                <value>-30</value>
+            </product>
+        </expression>
+    </reference>
+    <output><property>/fcs/fbw/target-q</property></output>
+    <Kp>0.2</Kp>
+    <u_min>-3.1415</u_min>
+    <u_max>3.1415</u_max>
+</pi-simple-controller>
+
+<pi-simple-controller>
+    <name>FBW yaw damper</name>
+    <input>
+        <expression>
+            <product>
+                <property>/orientation/side-slip-deg</property>
+                <value>-1</value>
+            </product>
+        </expression>
+    </input>
+    <reference>
+        <value>0</value>
+        <!--
+        <expression>
+            <product>
+                <property>/controls/flight/rudder</property>
+                <value>1</value>
+            </product>
+        </expression>
+        -->
+    </reference>
+    <output><property>/fcs/fbw/target-r</property></output>
+    <Kp>0.01</Kp>
+    <Ki>0.01</Ki>
+    <u_min>-0.25</u_min>
+    <u_max>0.25</u_max>
+</pi-simple-controller>
+
+<!-- RATE CONTROLLERS -->
+<!-- FBW BANK CONTROLLER -->
+<pid-controller>
+    <name>FBW bank rate controller</name>
+    <input>
+        <property>/orientation/p-body</property>
+    </input>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/bank-law</property>
+                <value>1</value>
+            </equals>
+        </condition>
+        <expression>
+            <product>
+                <property>/controls/flight/aileron</property>
+                <value>0.5</value>
+            </product>
+        </expression>
+    </reference>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/bank-law</property>
+                <value>2</value>
+            </equals>
+        </condition>
+        <property>/fcs/fbw/target-p</property>
+    </reference>
+    <output><property>/fcs/fbw/aileron</property></output>
+    <Kp>48</Kp>
+    <Ti>0.5</Ti>
+    <Td>0.01</Td>
+    <u_min>-1.0</u_min>
+    <u_max>1.0</u_max>
+</pid-controller>
+<!-- FBW PITCH CONTROLLER -->
+<pid-controller>
+    <name>FBW pitch controller</name>
+    <input>
+        <property>/orientation/q-body</property>
+    </input>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/pitch-law</property>
+                <value>1</value>
+            </equals>
+        </condition>
+        <expression>
+            <product>
+                <property>/controls/flight/elevator</property>
+                <value>-0.5</value>
+            </product>
+        </expression>
+    </reference>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/bank-law</property>
+                <value>2</value>
+            </equals>
+        </condition>
+        <property>/fcs/fbw/target-q</property>
+    </reference>
+    <output><property>/fcs/fbw/elevator</property></output>
+    <Kp>-24</Kp>
+    <Ti>0.5</Ti>
+    <Td>0</Td>
+    <u_min>-1.0</u_min>
+    <u_max>1.0</u_max>
+</pid-controller>
+<!-- FBW YAW CONTROLLER -->
+<pid-controller>
+    <name>FBW yaw controller</name>
+    <debug type="bool">false</debug>
+    <input>
+        <property>/orientation/r-body</property>
+    </input>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/yaw-law</property>
+                <value>1</value>
+            </equals>
+        </condition>
+        <expression>
+            <product>
+                <property>/controls/flight/rudder</property>
+                <value>0.25</value>
+            </product>
+        </expression>
+    </reference>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/yaw-law</property>
+                <value>2</value>
+            </equals>
+        </condition>
+        <property>/fcs/fbw/target-r</property>
+    </reference>
+    <output><property>/fcs/fbw/rudder</property></output>
+    <Kp>50</Kp>
+    <Ti>0.25</Ti>
+    <Td>0.0001</Td>
+    <u_min>-1.0</u_min>
+    <u_max>1.0</u_max>
+</pid-controller>
+
+<!-- FBW BANK (p-body) -->
+<filter>
+    <type>gain</type>
+    <input>
+        <condition>
+            <equals>
+                <property>/fcs/bank-law</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <property>/controls/flight/aileron</property>
+    </input>
+    <input>
+        <property>/fcs/fbw/aileron</property>
+    </input>
+    <output>/fcs/aileron</output>
+</filter>
+
+<!-- FBW PITCH (q-body) -->
+<filter>
+    <type>gain</type>
+    <input>
+        <condition>
+            <equals>
+                <property>/fcs/pitch-law</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <property>/controls/flight/elevator</property>
+    </input>
+    <input>
+        <property>/fcs/fbw/elevator</property>
+    </input>
+    <output>/fcs/elevator</output>
+</filter>
+
+<!-- FBW YAW (r-body) -->
+<filter>
+    <type>gain</type>
+    <input>
+        <condition>
+            <equals>
+                <property>/fcs/yaw-law</property>
+                <value>0</value>
+            </equals>
+        </condition>
+        <property>/controls/flight/rudder</property>
+    </input>
+    <input>
+        <property>/fcs/fbw/rudder</property>
+    </input>
+    <output>/fcs/rudder</output>
+</filter>
+
+<!-- Engine rotation -->
+<!-- interpolate between rudder and ailerons -->
+<filter>
+    <type>gain</type>
+    <gain>-1</gain>
+    <input>
+        <expression>
+            <sin>
+                <product>
+                    <value>3.141592653589793</value>
+                    <property>/controls/engines/engine[0]/propeller-pitch</property>
+                </product>
+            </sin>
+        </expression>
+    </input>
+    <output>/fcs/rudder-to-left-engine-pitch</output>
+</filter>
+<filter>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <expression>
+            <sin>
+                <product>
+                    <value>3.141592653589793</value>
+                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                </product>
+            </sin>
+        </expression>
+    </input>
+    <output>/fcs/rudder-to-right-engine-pitch</output>
+</filter>
+<filter>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <expression>
+            <cos>
+                <product>
+                    <value>3.141592653589793</value>
+                    <property>/controls/engines/engine[0]/propeller-pitch</property>
+                </product>
+            </cos>
+        </expression>
+    </input>
+    <output>/fcs/aileron-to-left-engine-pitch</output>
+</filter>
+<filter>
+    <type>gain</type>
+    <gain>-1</gain>
+    <input>
+        <expression>
+            <cos>
+                <product>
+                    <value>3.141592653589793</value>
+                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                </product>
+            </cos>
+        </expression>
+    </input>
+    <output>/fcs/aileron-to-right-engine-pitch</output>
+</filter>
+
+<filter>
+    <type>gain</type>
+    <gain>0.5</gain>
+    <input>
+        <expression>
+            <sum>
+                <product>
+                    <property>/fcs/rudder</property>
+                    <property>/fcs/rudder-to-left-engine-pitch</property>
+                </product>
+                <product>
+                    <property>/fcs/aileron</property>
+                    <property>/fcs/aileron-to-left-engine-pitch</property>
+                </product>
+                <product>
+                    <property>/controls/engines/engine[0]/propeller-pitch</property>
+                    <value>2</value>
+                </product>
+            </sum>
+        </expression>
+    </input>
+    <output>/fcs/left-engine-pitch-norm</output>
+</filter>
+<filter>
+    <type>gain</type>
+    <gain>0.5</gain>
+    <input>
+        <expression>
+            <sum>
+                <product>
+                    <property>/fcs/rudder</property>
+                    <property>/fcs/rudder-to-right-engine-pitch</property>
+                </product>
+                <product>
+                    <property>/fcs/aileron</property>
+                    <property>/fcs/aileron-to-right-engine-pitch</property>
+                </product>
+                <product>
+                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                    <value>2</value>
+                </product>
+            </sum>
+        </expression>
+    </input>
+    <output>/fcs/right-engine-pitch-norm</output>
+</filter>
+
+<!-- Throttles -->
+<filter>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <condition>
+            <property>/fcs/stardrive/enable</property>
+        </condition>
+        <property>/controls/engines/engine[4]/throttle</property>
+    </input>
+    <input>
+        <value>0</value>
+    </input>
+    <output>/fcs/stardrive/throttle</output>
+</filter>
+
+</PropertyList>

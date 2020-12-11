@@ -1,0 +1,31 @@
+<PropertyList>
+
+<filter>
+    <type>noise-spike</type>
+    <max-rate-of-change>0.1</max-rate-of-change>
+    <input>/fcs/left-engine-pitch-norm</input>
+    <output>/surface-positions/left-engine-pitch-norm</output>
+</filter>
+
+<filter>
+    <type>gain</type>
+    <gain>3.141592653589793</gain>
+    <input>/surface-positions/left-engine-pitch-norm</input>
+    <output>/fdm/jsbsim/propulsion/engine[0]/pitch-angle-rad</output>
+</filter>
+
+<filter>
+    <type>noise-spike</type>
+    <max-rate-of-change>0.1</max-rate-of-change>
+    <input>/fcs/right-engine-pitch-norm</input>
+    <output>/surface-positions/right-engine-pitch-norm</output>
+</filter>
+
+<filter>
+    <type>gain</type>
+    <gain>3.141592653589793</gain>
+    <input>/surface-positions/right-engine-pitch-norm</input>
+    <output>/fdm/jsbsim/propulsion/engine[1]/pitch-angle-rad</output>
+</filter>
+
+</PropertyList>

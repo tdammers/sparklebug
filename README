@@ -1,0 +1,62 @@
+K46-03 Sparklebug
+=================
+
+This is a fictional transport spacecraft; any similarity with real or fictional
+aircraft or spacecraft is accidental and completely unintentional.
+
+Characteristics
+---------------
+
+The Sparklebug is a single-stage-to-orbit (SSTO), vertical takeoff/landing
+(VTOL) transport spacecraft.
+
+It is equipped with the following propulsion systems:
+
+- Air-breathing main engines (4, though only 2 currently simulated), mounted in
+  two rotating nacelles on the wing tips.
+- Rocket engine (3, though only 1 currently simulated), mounted in the tail.
+- 12 RCS thrusters.
+
+A typical mission would involve the following flight phases:
+
+- Vertical takeoff
+- Accelerate to subsonic climb speed, main engines provide lift and thrust
+- At a suitable altitude, engage afterburners, tilt main engines forward,
+  and go supersonic. Wings now provide sufficient lift for sustained
+  aerodynamic flight.
+- Supersonic climb to upper atmosphere.
+- Engage rocket engine to continue climb and acceleration
+- Main engine shutoff around 100k ft
+- Orbital insertion using rocket engine and RCS
+- Deorbit burn using rocket engine
+- Ballistic descent to upper atmosphere; pitch up ~40 degrees for optimal drag
+- Main engines started once air density is sufficient, pointed down to further
+  decrease speed
+- Transition to aerodynamic flight, glide down to a suitable atmospheric cruise
+  altitude and speed
+- Approach destination in aerodynamic flight
+- Vertical landing
+
+Development Status
+------------------
+
+- FDM:
+    - aerodynamic: working.
+    - propulsion: working, but need to make it 4 main engines and 3 rocket
+      thrusters instead of 2 + 1.
+    - aerodynamic control surfaces: TODO
+    - ground effect: TODO
+    - mach drag: TODO
+- 3D model:
+    - hull somewhat complete, but needs detail work
+    - landing gear: TODO
+    - textures and UV mapping: TODO
+    - cockpit & instruments: TODO
+    - interior: TODO
+    - doors, windows: TODO
+    - particle animations for engines etc.: TODO
+- Systems:
+    - FBW: largely done, needs bugfixing (goes unstable in some situations)
+    - instruments: TODO
+    - autopilot: TODO
+    - fuel systems, reactor: TODO
