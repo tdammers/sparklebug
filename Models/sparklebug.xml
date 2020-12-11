@@ -8,165 +8,123 @@
     <model>
         <name>Nose Tip</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>-49</x-m>
+            <x-m>-64</x-m>
             <y-m>0</y-m>
-            <z-m>4</z-m>
+            <z-m>-2.75</z-m>
         </offsets>
     </model>
     <model>
-        <name>Flightdeck Top</name>
+        <name>Roof Front</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>-33</x-m>
+            <x-m>-40</x-m>
             <y-m>0</y-m>
-            <z-m>15.5</z-m>
+            <z-m>4.5</z-m>
         </offsets>
     </model>
     <model>
-        <name>Grav Rotor Top</name>
+        <name>Stabilizer Top</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>16</x-m>
+            <x-m>42</x-m>
             <y-m>0</y-m>
-            <z-m>11</z-m>
+            <z-m>10</z-m>
         </offsets>
     </model>
     <model>
-        <name>Rear Hull Top</name>
+        <name>Tail Tip</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>28</x-m>
+            <x-m>52</x-m>
             <y-m>0</y-m>
-            <z-m>9</z-m>
+            <z-m>3</z-m>
         </offsets>
     </model>
     <model>
-        <name>Rear Hull Left</name>
+        <name>Tail Bottom</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>28</x-m>
-            <y-m>-9</y-m>
-            <z-m>0</z-m>
-        </offsets>
-    </model>
-    <model>
-        <name>Rear Hull Right</name>
-        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
-        <offsets>
-            <x-m>28</x-m>
-            <y-m>9</y-m>
-            <z-m>0</z-m>
-        </offsets>
-    </model>
-    <model>
-        <name>Left Tail Tip</name>
-        <path>/Models/Maritime/Misc/RedBuoy.ac</path>
-
-        <offsets>
-            <x-m>47</x-m>
-            <y-m>-5</y-m>
-            <z-m>-6</z-m>
-        </offsets>
-    </model>
-    <model>
-        <name>Left Tail</name>
-        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
-        <offsets>
-            <x-m>30</x-m>
-            <y-m>-8</y-m>
-            <z-m>-10.5</z-m>
+            <x-m>45</x-m>
+            <y-m>0</y-m>
+            <z-m>-2</z-m>
         </offsets>
     </model>
     <model>
         <name>Left Cargo Bay Aft</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>9</x-m>
+            <x-m>5</x-m>
             <y-m>-7</y-m>
-            <z-m>-11.5</z-m>
+            <z-m>-10</z-m>
         </offsets>
     </model>
     <model>
         <name>Left Cargo Bay Fore</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>-9</x-m>
+            <x-m>-11</x-m>
             <y-m>-7</y-m>
-            <z-m>-11.5</z-m>
-        </offsets>
-    </model>
-    <model>
-        <name>Right Tail Tip</name>
-        <path>/Models/Maritime/Misc/GreenBuoy.ac</path>
-
-        <offsets>
-            <x-m>47</x-m>
-            <y-m>5</y-m>
-            <z-m>-6</z-m>
-        </offsets>
-    </model>
-    <model>
-        <name>Right Tail</name>
-        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
-        <offsets>
-            <x-m>30</x-m>
-            <y-m>8</y-m>
-            <z-m>-10.5</z-m>
+            <z-m>-10</z-m>
         </offsets>
     </model>
     <model>
         <name>Right Cargo Bay Aft</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>9</x-m>
+            <x-m>5</x-m>
             <y-m>7</y-m>
-            <z-m>-11.5</z-m>
+            <z-m>-10</z-m>
         </offsets>
     </model>
     <model>
         <name>Right Cargo Bay Fore</name>
         <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
-
         <offsets>
-            <x-m>-9</x-m>
+            <x-m>-11</x-m>
             <y-m>7</y-m>
-            <z-m>-11.5</z-m>
+            <z-m>-10</z-m>
         </offsets>
     </model>
     <model>
-        <name>Left Wing</name>
-        <path>/Models/Maritime/Misc/RedBuoy.ac</path>
-
+        <name>Left Wing Front</name>
+        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
         <offsets>
-            <x-m>0</x-m>
-            <y-m>-29</y-m>
-            <z-m>0</z-m>
+            <x-m>-4</x-m>
+            <y-m>-28</y-m>
+            <z-m>-2</z-m>
         </offsets>
     </model>
     <model>
-        <name>Right Wing</name>
-        <path>/Models/Maritime/Misc/GreenBuoy.ac</path>
-
+        <name>Left Wing Back</name>
+        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
         <offsets>
-            <x-m>0</x-m>
-            <y-m>29</y-m>
-            <z-m>0</z-m>
+            <x-m>4</x-m>
+            <y-m>-28</y-m>
+            <z-m>-2</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Right Wing Front</name>
+        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
+        <offsets>
+            <x-m>-4</x-m>
+            <y-m>28</y-m>
+            <z-m>-2</z-m>
+        </offsets>
+    </model>
+    <model>
+        <name>Right Wing Back</name>
+        <path>/Models/Maritime/Misc/MarkerBuoy.ac</path>
+        <offsets>
+            <x-m>4</x-m>
+            <y-m>28</y-m>
+            <z-m>-2</z-m>
         </offsets>
     </model>
     -->
 
+    <!-- Main engine pitch -->
 	<animation>
 		<type>rotate</type>
 		<object-name>EngineNacelleLeft</object-name>
@@ -202,11 +160,12 @@
 		</axis>
 	</animation>
 
+    <!-- Gear animations -->
     <animation>
         <type>translate</type>
-        <object-name>Gear0</object-name>
+        <object-name>Gear.FrontLeft</object-name>
         <property>/gear/gear[0]/compression-norm</property>
-        <factor>1</factor>
+        <factor>0.3048</factor>
         <axis>
             <x>0</x>
             <y>0</y>
@@ -214,123 +173,307 @@
         </axis>
     </animation>
 	<animation>
-		<type>rotate</type>
-		<object-name>Gear0</object-name>
+		<type>translate</type>
+		<object-name>Gear.FrontLeft</object-name>
 		<property>/gear/gear[0]/position-norm</property>
-		<factor>-70</factor>
-        <offset-deg>70</offset-deg>
-		<center>
-			<x-m>-1</x-m>
-			<y-m>0</y-m>
-			<z-m>-11</z-m>
-		</center>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>3.7</dep></entry>
+            <entry><ind>0.50</ind><dep>3.6</dep></entry>
+            <entry><ind>1.00</ind><dep>0.0</dep></entry>
+        </interpolation>
 		<axis>
 			<x>0</x>
-			<y>1</y>
-			<z>0</z>
+			<y>0</y>
+			<z>1</z>
 		</axis>
 	</animation>
-    <animation>
-        <type>translate</type>
-        <object-name>Gear1</object-name>
-        <property>/gear/gear[1]/compression-norm</property>
-        <factor>1</factor>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
 	<animation>
 		<type>rotate</type>
-		<object-name>Gear1</object-name>
-		<property>/gear/gear[1]/position-norm</property>
-		<factor>-70</factor>
-        <offset-deg>70</offset-deg>
-		<center>
-			<x-m>-1</x-m>
-			<y-m>0</y-m>
-			<z-m>-11</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-    <animation>
-        <type>translate</type>
-        <object-name>Gear2</object-name>
-        <property>/gear/gear[2]/compression-norm</property>
-        <factor>1</factor>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Gear2</object-name>
-		<property>/gear/gear[2]/position-norm</property>
-		<factor>70</factor>
-        <offset-deg>-70</offset-deg>
-		<center>
-			<x-m>1</x-m>
-			<y-m>0</y-m>
-			<z-m>-11</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-    <animation>
-        <type>translate</type>
-        <object-name>Gear3</object-name>
-        <property>/gear/gear[3]/compression-norm</property>
-        <factor>1</factor>
-        <axis>
-            <x>0</x>
-            <y>0</y>
-            <z>1</z>
-        </axis>
-    </animation>
-	<animation>
-		<type>rotate</type>
-		<object-name>Gear3</object-name>
-		<property>/gear/gear[3]/position-norm</property>
-		<factor>70</factor>
-        <offset-deg>-70</offset-deg>
-		<center>
-			<x-m>1</x-m>
-			<y-m>0</y-m>
-			<z-m>-11</z-m>
-		</center>
-		<axis>
-			<x>0</x>
-			<y>1</y>
-			<z>0</z>
-		</axis>
-	</animation>
-
-    <animation>
-        <type>spin</type>
-        <object-name>GravRotor</object-name>
-        <property>/systems/grav-rotor/speed</property>
-        <factor>1</factor>
+		<object-name>Gear.FrontLeft</object-name>
+		<property>/gear/gear[0]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>90</dep></entry>
+            <entry><ind>0.50</ind><dep>90</dep></entry>
+            <entry><ind>1.00</ind><dep>0</dep></entry>
+        </interpolation>
         <center>
-            <x-m>0</x-m>
-            <z-m>0</z-m>
+			<x-m>-10</x-m>
+			<y-m>-4.5</y-m>
+			<z-m>-12</z-m>
         </center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.FrontLeft</object-name>
+		<property>/gear/gear[0]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.2</dep></entry>
+            <entry><ind>1.00</ind><dep>0.2</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.FrontLeft</object-name>
+		<property>/gear/gear[0]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.0</dep></entry>
+            <entry><ind>0.50</ind><dep>2.5</dep></entry>
+            <entry><ind>1.00</ind><dep>2.5</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Gear.FrontRight</object-name>
+        <property>/gear/gear[1]/compression-norm</property>
+        <factor>0.3048</factor>
         <axis>
-            <x>1</x>
+            <x>0</x>
             <y>0</y>
-            <z>0</z>
+            <z>1</z>
         </axis>
     </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gear.FrontRight</object-name>
+		<property>/gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>3.7</dep></entry>
+            <entry><ind>0.50</ind><dep>3.6</dep></entry>
+            <entry><ind>1.00</ind><dep>0.0</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>Gear.FrontRight</object-name>
+		<property>/gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>90</dep></entry>
+            <entry><ind>0.50</ind><dep>90</dep></entry>
+            <entry><ind>1.00</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+			<x-m>-10</x-m>
+			<y-m>4.5</y-m>
+			<z-m>-12</z-m>
+        </center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.FrontRight</object-name>
+		<property>/gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.2</dep></entry>
+            <entry><ind>1.00</ind><dep>0.2</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.FrontRight</object-name>
+		<property>/gear/gear[1]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.0</dep></entry>
+            <entry><ind>0.50</ind><dep>2.5</dep></entry>
+            <entry><ind>1.00</ind><dep>2.5</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
+    <animation>
+        <type>translate</type>
+        <object-name>Gear.RearLeft</object-name>
+        <property>/gear/gear[2]/compression-norm</property>
+        <factor>0.3048</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gear.RearLeft</object-name>
+		<property>/gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>3.7</dep></entry>
+            <entry><ind>0.50</ind><dep>3.6</dep></entry>
+            <entry><ind>1.00</ind><dep>0.0</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>Gear.RearLeft</object-name>
+		<property>/gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>-90</dep></entry>
+            <entry><ind>0.50</ind><dep>-90</dep></entry>
+            <entry><ind>1.00</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+			<x-m>3.5</x-m>
+			<y-m>-4.5</y-m>
+			<z-m>-12</z-m>
+        </center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.RearLeft</object-name>
+		<property>/gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.2</dep></entry>
+            <entry><ind>1.00</ind><dep>0.2</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.RearLeft</object-name>
+		<property>/gear/gear[2]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.0</dep></entry>
+            <entry><ind>0.50</ind><dep>2.5</dep></entry>
+            <entry><ind>1.00</ind><dep>2.5</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+    <animation>
+        <type>translate</type>
+        <object-name>Gear.RearRight</object-name>
+        <property>/gear/gear[3]/compression-norm</property>
+        <factor>0.3048</factor>
+        <axis>
+            <x>0</x>
+            <y>0</y>
+            <z>1</z>
+        </axis>
+    </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>Gear.RearRight</object-name>
+		<property>/gear/gear[3]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>3.7</dep></entry>
+            <entry><ind>0.50</ind><dep>3.6</dep></entry>
+            <entry><ind>1.00</ind><dep>0.0</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>Gear.RearRight</object-name>
+		<property>/gear/gear[3]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>-90</dep></entry>
+            <entry><ind>0.50</ind><dep>-90</dep></entry>
+            <entry><ind>1.00</ind><dep>0</dep></entry>
+        </interpolation>
+        <center>
+			<x-m>3.5</x-m>
+			<y-m>4.5</y-m>
+			<z-m>-12</z-m>
+        </center>
+		<axis>
+			<x>0</x>
+			<y>1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.RearRight</object-name>
+		<property>/gear/gear[3]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.2</dep></entry>
+            <entry><ind>1.00</ind><dep>0.2</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
+	<animation>
+		<type>translate</type>
+		<object-name>GearDoor.RearRight</object-name>
+		<property>/gear/gear[3]/position-norm</property>
+        <interpolation>
+            <entry><ind>0.00</ind><dep>0.0</dep></entry>
+            <entry><ind>0.25</ind><dep>0.0</dep></entry>
+            <entry><ind>0.50</ind><dep>2.5</dep></entry>
+            <entry><ind>1.00</ind><dep>2.5</dep></entry>
+        </interpolation>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+    <!-- Flightdeck -->
     <animation>
         <name>FlightdeckScreens</name>
         <object-name>PFD2</object-name>

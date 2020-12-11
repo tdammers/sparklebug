@@ -1,5 +1,50 @@
 <PropertyList>
 
+<!-- TRIM SUMMERS -->
+<filter>
+    <name>elevator sum</name>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <expression>
+            <sum>
+                <property>/controls/flight/elevator</property>
+                <property>/controls/flight/elevator-trim</property>
+            </sum>
+        </expression>
+    </input>
+    <output>/controls/flight/elevator-sum</output>
+</filter>
+<filter>
+    <name>aileron sum</name>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <expression>
+            <sum>
+                <property>/controls/flight/aileron</property>
+                <property>/controls/flight/aileron-trim</property>
+            </sum>
+        </expression>
+    </input>
+    <output>/controls/flight/aileron-sum</output>
+</filter>
+<filter>
+    <name>rudder sum</name>
+    <type>gain</type>
+    <gain>1</gain>
+    <input>
+        <expression>
+            <sum>
+                <property>/controls/flight/rudder</property>
+                <property>/controls/flight/rudder-trim</property>
+            </sum>
+        </expression>
+    </input>
+    <output>/controls/flight/rudder-sum</output>
+</filter>
+            
+
 <!-- FBW CONTROLLERS -->
 
 <!-- ATTITUDE CONTROLLERS -->
@@ -11,7 +56,7 @@
     <reference>
         <expression>
             <product>
-                <property>/controls/flight/aileron</property>
+                <property>/controls/flight/aileron-sum</property>
                 <value>30</value>
             </product>
         </expression>
@@ -30,7 +75,7 @@
     <reference>
         <expression>
             <product>
-                <property>/controls/flight/elevator</property>
+                <property>/controls/flight/elevator-sum</property>
                 <value>-30</value>
             </product>
         </expression>
@@ -56,7 +101,7 @@
         <!--
         <expression>
             <product>
-                <property>/controls/flight/rudder</property>
+                <property>/controls/flight/rudder-sum</property>
                 <value>1</value>
             </product>
         </expression>
@@ -85,7 +130,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/aileron</property>
+                <property>/controls/flight/aileron-sum</property>
                 <value>0.5</value>
             </product>
         </expression>
@@ -121,7 +166,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/elevator</property>
+                <property>/controls/flight/elevator-sum</property>
                 <value>-0.5</value>
             </product>
         </expression>
@@ -158,7 +203,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/rudder</property>
+                <property>/controls/flight/rudder-sum</property>
                 <value>0.25</value>
             </product>
         </expression>
@@ -190,7 +235,7 @@
                 <value>0</value>
             </equals>
         </condition>
-        <property>/controls/flight/aileron</property>
+        <property>/controls/flight/aileron-sum</property>
     </input>
     <input>
         <property>/fcs/fbw/aileron</property>
@@ -208,7 +253,7 @@
                 <value>0</value>
             </equals>
         </condition>
-        <property>/controls/flight/elevator</property>
+        <property>/controls/flight/elevator-sum</property>
     </input>
     <input>
         <property>/fcs/fbw/elevator</property>
@@ -226,7 +271,7 @@
                 <value>0</value>
             </equals>
         </condition>
-        <property>/controls/flight/rudder</property>
+        <property>/controls/flight/rudder-sum</property>
     </input>
     <input>
         <property>/fcs/fbw/rudder</property>

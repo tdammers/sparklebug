@@ -1,205 +1,183 @@
 <?xml version="1.0"?>
 <ground_reactions>
-    <contact type="BOGEY" name="REAR LEFT">
+    <contact type="BOGEY" name="FRONT LEFT">
         <location unit="M">
-            <x>-8</x>
-            <y>-9</y>
-            <z>-13.5</z>
+            <x>-10</x>
+            <y>-4.5</y>
+            <z>-12.1</z>
         </location>
         <static_friction> 0.5 </static_friction>
         <dynamic_friction> 0.5 </dynamic_friction>
         <rolling_friction> 0.5 </rolling_friction>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
-        <retractable>1</retractable>
-        <brake_group>LEFT</brake_group>
-    </contact>
-    <contact type="BOGEY" name="REAR RIGHT">
-        <location unit="M">
-            <x>-8</x>
-            <y>9</y>
-            <z>-13.5</z>
-        </location>
-        <static_friction>8</static_friction>
-        <dynamic_friction>4</dynamic_friction>
-        <rolling_friction>4</rolling_friction>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
-        <retractable>1</retractable>
-        <brake_group>RIGHT</brake_group>
-    </contact>
-    <contact type="BOGEY" name="FRONT LEFT">
-        <location unit="M">
-            <x>8</x>
-            <y>-9</y>
-            <z>-13.5</z>
-        </location>
-        <static_friction>8</static_friction>
-        <dynamic_friction>4</dynamic_friction>
-        <rolling_friction>4</rolling_friction>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
         <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>LEFT</brake_group>
     </contact>
     <contact type="BOGEY" name="FRONT RIGHT">
         <location unit="M">
-            <x>8</x>
-            <y>9</y>
-            <z>-13.5</z>
+            <x>-10</x>
+            <y>4.5</y>
+            <z>-12.1</z>
         </location>
-        <static_friction>8</static_friction>
-        <dynamic_friction>4</dynamic_friction>
-        <rolling_friction>4</rolling_friction>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <static_friction> 0.5 </static_friction>
+        <dynamic_friction> 0.5 </dynamic_friction>
+        <rolling_friction> 0.5 </rolling_friction>
+        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <retractable>1</retractable>
+        <brake_group>RIGHT</brake_group>
+    </contact>
+    <contact type="BOGEY" name="REAR LEFT">
+        <location unit="M">
+            <x>3.5</x>
+            <y>-4.5</y>
+            <z>-12.1</z>
+        </location>
+        <static_friction> 0.5 </static_friction>
+        <dynamic_friction> 0.5 </dynamic_friction>
+        <rolling_friction> 0.5 </rolling_friction>
+        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <retractable>1</retractable>
+        <brake_group>LEFT</brake_group>
+    </contact>
+    <contact type="BOGEY" name="REAR RIGHT">
+        <location unit="M">
+            <x>3.5</x>
+            <y>4.5</y>
+            <z>-12.1</z>
+        </location>
+        <static_friction> 0.5 </static_friction>
+        <dynamic_friction> 0.5 </dynamic_friction>
+        <rolling_friction> 0.5 </rolling_friction>
+        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
         <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>RIGHT</brake_group>
     </contact>
     
     <contact type="STRUCTURE" name="Nose Tip">
+        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
         <location unit="M">
-            <x>-49</x>
+            <x>-64</x>
             <y>0</y>
-            <z>4</z>
+            <z>-2.75</z>
         </location>
+    </contact>
+    <contact type="STRUCTURE" name="Roof Front">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Flightdeck Top">
         <location unit="M">
-            <x>-33</x>
+            <x>-40</x>
             <y>0</y>
-            <z>15.5</z>
+            <z>4.5</z>
         </location>
+    </contact>
+    <contact type="STRUCTURE" name="Stabilizer Top">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Grav Rotor Top">
         <location unit="M">
-            <x>16</x>
+            <x>42</x>
             <y>0</y>
-            <z>11</z>
+            <z>10</z>
         </location>
+    </contact>
+    <contact type="STRUCTURE" name="Tail Tip">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Rear Hull Top">
         <location unit="M">
-            <x>28</x>
+            <x>52</x>
             <y>0</y>
-            <z>9</z>
+            <z>3</z>
         </location>
+    </contact>
+    <contact type="STRUCTURE" name="Tail Bottom">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Rear Hull Left">
         <location unit="M">
-            <x>28</x>
-            <y>-9</y>
-            <z>0</z>
+            <x>45</x>
+            <y>0</y>
+            <z>-2</z>
         </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
     </contact>
-    <contact type="STRUCTURE" name="Rear Hull Right">
-        <location unit="M">
-            <x>28</x>
-            <y>9</y>
-            <z>0</z>
-        </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Left Tail Tip">
-        <location unit="M">
-            <x>47</x>
-            <y>-5</y>
-            <z>-6</z>
-        </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Left Tail">
-        <location unit="M">
-            <x>30</x>
-            <y>-8</y>
-            <z>-10.5</z>
-        </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
+
     <contact type="STRUCTURE" name="Left Cargo Bay Aft">
-        <location unit="M">
-            <x>9</x>
-            <y>-7</y>
-            <z>-11.5</z>
-        </location>
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <location unit="M">
+            <x>5</x>
+            <y>-7</y>
+            <z>-10</z>
+        </location>
     </contact>
     <contact type="STRUCTURE" name="Left Cargo Bay Fore">
+        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
         <location unit="M">
-            <x>-9</x>
+            <x>-11</x>
             <y>-7</y>
-            <z>-11.5</z>
+            <z>-10</z>
         </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Right Tail Tip">
-        <location unit="M">
-            <x>47</x>
-            <y>5</y>
-            <z>-6</z>
-        </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Right Tail">
-        <location unit="M">
-            <x>30</x>
-            <y>8</y>
-            <z>-10.5</z>
-        </location>
-        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
-        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
     </contact>
     <contact type="STRUCTURE" name="Right Cargo Bay Aft">
-        <location unit="M">
-            <x>9</x>
-            <y>7</y>
-            <z>-11.5</z>
-        </location>
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <location unit="M">
+            <x>5</x>
+            <y>7</y>
+            <z>-10</z>
+        </location>
     </contact>
     <contact type="STRUCTURE" name="Right Cargo Bay Fore">
+        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
         <location unit="M">
-            <x>-9</x>
+            <x>-11</x>
             <y>7</y>
-            <z>-11.5</z>
+            <z>-10</z>
         </location>
+    </contact>
+
+    <contact type="STRUCTURE" name="Left Wing Front">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Left Wing">
         <location unit="M">
-            <x>0</x>
-            <y>-29</y>
-            <z>0</z>
+            <x>-4</x>
+            <y>-28</y>
+            <z>-2</z>
         </location>
+    </contact>
+    <contact type="STRUCTURE" name="Left Wing Back">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
-    </contact>
-    <contact type="STRUCTURE" name="Right Wing">
         <location unit="M">
-            <x>0</x>
-            <y>29</y>
-            <z>0</z>
+            <x>4</x>
+            <y>-28</y>
+            <z>-2</z>
         </location>
+    </contact>
+
+    <contact type="STRUCTURE" name="Right Wing Front">
         <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
         <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <location unit="M">
+            <x>-4</x>
+            <y>28</y>
+            <z>-2</z>
+        </location>
     </contact>
+
+    <contact type="STRUCTURE" name="Right Wing Back">
+        <damping_coeff unit="LBS/FT/SEC"> 10000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 400000 </spring_coeff>
+        <location unit="M">
+            <x>4</x>
+            <y>28</y>
+            <z>-2</z>
+        </location>
+    </contact>
+
 </ground_reactions>
 

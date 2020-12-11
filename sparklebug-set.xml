@@ -88,7 +88,7 @@
 
         <dimensions>
             <radius-m type="double">117.14</radius-m>
-            <parkpos-offset-m type="double">-50.0</parkpos-offset-m>
+            <parkpos-offset-m type="double">0.0</parkpos-offset-m>
         </dimensions>
 
         <chase-distance-m>-300</chase-distance-m>
@@ -282,4 +282,11 @@
             <enable type="bool">false</enable>
         </stardrive>
     </fcs>
+    <controls>
+        <flight>
+            <elevator-sum type="double">0</elevator-sum>
+            <aileron-sum type="double">0</aileron-sum>
+            <rudder-sum type="double">0</rudder-sum>
+        </flight>
+    </controls>
 </PropertyList>
