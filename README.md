@@ -4,6 +4,8 @@ K46-03 Sparklebug
 This is a fictional transport spacecraft; any similarity with real or fictional
 aircraft or spacecraft is accidental and completely unintentional.
 
+![Sparklebug hovering](Splash/hover-departure.jpg)
+
 Characteristics
 ---------------
 
