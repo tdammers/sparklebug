@@ -62,7 +62,7 @@
         </expression>
     </reference>
     <output><property>/fcs/fbw/target-p</property></output>
-    <Kp>0.2</Kp>
+    <Kp>0.05</Kp>
     <u_min>-3.1415</u_min>
     <u_max>3.1415</u_max>
 </pi-simple-controller>
@@ -130,7 +130,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/aileron-sum</property>
+                <property>/controls/flight/aileron</property>
                 <value>0.5</value>
             </product>
         </expression>
@@ -145,9 +145,9 @@
         <property>/fcs/fbw/target-p</property>
     </reference>
     <output><property>/fcs/fbw/aileron</property></output>
-    <Kp>48</Kp>
-    <Ti>0.5</Ti>
-    <Td>0.01</Td>
+    <Kp>12</Kp>
+    <Ti>1</Ti>
+    <Td>0.05</Td>
     <u_min>-1.0</u_min>
     <u_max>1.0</u_max>
 </pid-controller>
@@ -166,7 +166,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/elevator-sum</property>
+                <property>/controls/flight/elevator</property>
                 <value>-0.5</value>
             </product>
         </expression>
@@ -174,7 +174,7 @@
     <reference>
         <condition>
             <equals>
-                <property>/fcs/bank-law</property>
+                <property>/fcs/pitch-law</property>
                 <value>2</value>
             </equals>
         </condition>
@@ -203,7 +203,7 @@
         </condition>
         <expression>
             <product>
-                <property>/controls/flight/rudder-sum</property>
+                <property>/controls/flight/rudder</property>
                 <value>0.25</value>
             </product>
         </expression>
