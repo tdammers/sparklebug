@@ -177,11 +177,13 @@ below 60,000 ft.
 - AOA: 1-2 DEG
 - Main Engine Pitch: AS NEEDED
 - Thrust: AS NEEDED
+- Gear: DOWN BELOW 200 KTS
 
 #### Landing
 
 - Yaw Law: RATE (1)
 - Altitude: <= 2000 FT
+- Gear: DOWN AND LOCKED
 - Main Engine Pitch: UP
 - Thrust: AS NEEDED
 - Pitch/Bank: AS NEEDED
@@ -194,22 +196,22 @@ Development Status
 
 - FDM:
     - aerodynamic: working.
+    - fix contact points: done.
     - propulsion: working, but need to make it 4 main engines and 3 rocket
       thrusters instead of 2 + 1.
     - aerodynamic control surfaces: TODO
     - ground effect: TODO
     - mach drag: TODO
-    - fix contact points: TODO
 - 3D model:
     - hull somewhat complete, but needs detail work
-    - landing gear: TODO
+    - landing gear: done
     - textures and UV mapping: TODO
     - cockpit & instruments: TODO
     - interior: TODO
     - doors, windows: TODO
     - particle animations for engines etc.: TODO
 - Systems:
-    - FBW: largely done, needs bugfixing (goes unstable in some situations)
+    - FBW: done (needs pitch thrust compensation)
     - instruments: TODO
     - autopilot: TODO
     - fuel systems, reactor: TODO
