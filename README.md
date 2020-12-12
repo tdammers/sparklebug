@@ -1,4 +1,4 @@
-K46-03 Sparklebug
+SB46-03 Sparklebug
 =================
 
 This is a fictional transport spacecraft; any similarity with real or fictional
