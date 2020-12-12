@@ -79,7 +79,7 @@
                 <float n="6" alias="/systems/electrical/outputs/strobe">           0 </float>
                 <float n="7" alias="/systems/electrical/outputs/beacon">           0 </float>
                 <float n="8" alias="/systems/electrical/volts">                    0 </float>
-                <float n="15" alias="/gear/gear/position-norm">                    1 </float>
+                <float n="15" alias="/gear/gear[0]/position-norm">                 1 </float>
                 <float n="16" alias="/gear/gear[1]/position-norm">                 1 </float>
                 <float n="17" alias="/gear/gear[2]/position-norm">                 1 </float>
                 <float n="18" alias="/gear/gear[3]/position-norm">                 1 </float>
@@ -124,6 +124,10 @@
                 <name>flight controls</name>
                 <path>Systems/flight-controls.xml</path>
             </autopilot>
+            <property-rule>
+                <name>PFD</name>
+                <path>Systems/pfd.xml</path>
+            </property-rule>
         </systems>
 
     </sim>
@@ -251,11 +255,9 @@
     </input>
 
     <nasal>
-        <!--
         <pfd>
             <file>Nasal/Instrumentation/pfd.nas</file>
         </pfd>
-        -->
     </nasal>
 
     <!-- custom properties -->
@@ -281,6 +283,7 @@
             <throttle type="double">0</throttle>
             <enable type="bool">false</enable>
         </stardrive>
+        <wow type="bool">false</wow>
     </fcs>
     <controls>
         <flight>
@@ -289,4 +292,12 @@
             <rudder-sum type="double">0</rudder-sum>
         </flight>
     </controls>
+    <instrumentation>
+        <pfd>
+            <fpv>
+                <v-deg type="double">0</v-deg>
+                <w-deg type="double">0</w-deg>
+            </fpv>
+        </pfd>
+    </instrumentation>
 </PropertyList>

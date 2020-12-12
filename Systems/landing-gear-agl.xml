@@ -1,4 +1,5 @@
 <?xml version="1.0" ?>
+
 <PropertyList>
     <filter>
         <type>gain</type>
@@ -12,4 +13,18 @@
         </input>
         <output>/position/gear-agl-ft</output>
     </filter>
+
+    <logic>
+        <name>WOW</name>
+        <debug type="bool">true</debug>
+        <input>
+            <or>
+                <property>/gear/gear[0]/wow</property>
+                <property>/gear/gear[1]/wow</property>
+                <property>/gear/gear[2]/wow</property>
+                <property>/gear/gear[3]/wow</property>
+            </or>
+        </input>
+        <output>/fcs/wow</output>
+    </logic>
 </PropertyList>

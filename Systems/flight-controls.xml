@@ -97,19 +97,16 @@
         </expression>
     </input>
     <reference>
-        <value>0</value>
-        <!--
         <expression>
             <product>
                 <property>/controls/flight/rudder-sum</property>
                 <value>1</value>
             </product>
         </expression>
-        -->
     </reference>
     <output><property>/fcs/fbw/target-r</property></output>
     <Kp>0.01</Kp>
-    <Ki>0.01</Ki>
+    <!-- <Ki>0.01</Ki> -->
     <u_min>-0.25</u_min>
     <u_max>0.25</u_max>
 </pi-simple-controller>
@@ -218,9 +215,9 @@
         <property>/fcs/fbw/target-r</property>
     </reference>
     <output><property>/fcs/fbw/rudder</property></output>
-    <Kp>50</Kp>
-    <Ti>0.25</Ti>
-    <Td>0.0001</Td>
+    <Kp>25</Kp>
+    <Ti>0.5</Ti>
+    <Td>0.001</Td>
     <u_min>-1.0</u_min>
     <u_max>1.0</u_max>
 </pid-controller>
@@ -228,6 +225,12 @@
 <!-- FBW BANK (p-body) -->
 <filter>
     <type>gain</type>
+    <input>
+        <condition>
+            <property>/fcs/wow</property>
+        </condition>
+        <property>/controls/flight/aileron-sum</property>
+    </input>
     <input>
         <condition>
             <equals>
@@ -248,6 +251,12 @@
     <type>gain</type>
     <input>
         <condition>
+            <property>/fcs/wow</property>
+        </condition>
+        <property>/controls/flight/elevator-sum</property>
+    </input>
+    <input>
+        <condition>
             <equals>
                 <property>/fcs/pitch-law</property>
                 <value>0</value>
@@ -264,6 +273,12 @@
 <!-- FBW YAW (r-body) -->
 <filter>
     <type>gain</type>
+    <input>
+        <condition>
+            <property>/fcs/wow</property>
+        </condition>
+        <property>/controls/flight/rudder-sum</property>
+    </input>
     <input>
         <condition>
             <equals>

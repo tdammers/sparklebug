@@ -476,8 +476,8 @@
     <!-- Flightdeck -->
     <animation>
         <name>FlightdeckScreens</name>
-        <object-name>PFD2</object-name>
-        <object-name>MFD2</object-name>
+        <object-name>PFD1</object-name>
+        <object-name>MFD1</object-name>
     </animation>
 
     <animation>
