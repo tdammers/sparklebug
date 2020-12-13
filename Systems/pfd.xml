@@ -1,14 +1,19 @@
 <PropertyList>
+    <!-- calculate FPV -->
     <filter>
         <type>gain</type>
+        <name>FPV-V</name>
         <gain>1</gain>
         <input>
             <condition>
-                <equals>
-                    <property>/velocities/vBody-fps</property>
-                    <value>0</value>
-                </equals>
+                <less-than>
+                    <expression>
+                        <abs><property>/velocities/uBody-fps</property></abs>
+                    </expression>
+                    <value>1</value>
+                </less-than>
             </condition>
+            <value>0</value>
         </input>
         <input>
             <expression>
@@ -27,11 +32,14 @@
         <gain>1</gain>
         <input>
             <condition>
-                <equals>
-                    <property>/velocities/wBody-fps</property>
-                    <value>0</value>
-                </equals>
+                <less-than>
+                    <expression>
+                        <abs><property>/velocities/uBody-fps</property></abs>
+                    </expression>
+                    <value>1</value>
+                </less-than>
             </condition>
+            <value>0</value>
         </input>
         <input>
             <expression>
@@ -44,5 +52,191 @@
             </expression>
         </input>
         <output>/instrumentation/pfd/fpv/w-deg</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain>6.4</gain>
+        <input>/instrumentation/pfd/fpv/v-deg</input>
+        <output>/instrumentation/pfd/fpv/v-px</output>
+        <min>-168</min>
+        <max>168</max>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>6.4</gain>
+        <input>/instrumentation/pfd/fpv/w-deg</input>
+        <output>/instrumentation/pfd/fpv/w-px</output>
+        <min>-168</min>
+        <max>168</max>
+    </filter>
+
+    <!-- absolute (orbital) velocity -->
+    <filter>
+        <type>gain</type>
+        <gain>0.0003048</gain>
+        <input>
+            <expression>
+                <sqrt>
+                    <sum>
+                        <sqr><property>/velocities/uBody-fps</property></sqr>
+                        <sqr><property>/velocities/vBody-fps</property></sqr>
+                        <sqr><property>/velocities/wBody-fps</property></sqr>
+                    </sum>
+                </sqrt>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/orbitalv-kms</output>
+    </filter>
+
+    <!-- ground track vector -->
+    <filter>
+        <type>gain</type>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <difference>
+                    <property>/orientation/track-deg</property>
+                    <property>/orientation/heading-deg</property>
+                </difference>
+            </expression>
+        </input>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+        <output>/instrumentation/pfd/ground-track/error-deg</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain><property>/velocities/groundspeed-kt</property></gain>
+        <input>
+            <expression>
+                <sin>
+                    <deg2rad>
+                        <property>/instrumentation/pfd/ground-track/error-deg</property>
+                    </deg2rad>
+                </sin>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/ground-track/v</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <gain><property>/velocities/groundspeed-kt</property></gain>
+        <input>
+            <expression>
+                <cos>
+                    <deg2rad>
+                        <property>/instrumentation/pfd/ground-track/error-deg</property>
+                    </deg2rad>
+                </cos>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/ground-track/u</output>
+    </filter>
+
+    <!-- gear positions -->
+    <filter>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[0]/position-norm</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[0]/position-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <value>2</value>
+        </input>
+        <input>
+            <value>1</value>
+        </input>
+        <output>/instrumentation/pfd/gear-status[0]</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[1]/position-norm</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[1]/position-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <value>2</value>
+        </input>
+        <input>
+            <value>1</value>
+        </input>
+        <output>/instrumentation/pfd/gear-status[1]</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[2]/position-norm</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[2]/position-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <value>2</value>
+        </input>
+        <input>
+            <value>1</value>
+        </input>
+        <output>/instrumentation/pfd/gear-status[2]</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[3]/position-norm</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
+            <condition>
+                <equals>
+                    <property>/gear/gear[3]/position-norm</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+            <value>2</value>
+        </input>
+        <input>
+            <value>1</value>
+        </input>
+        <output>/instrumentation/pfd/gear-status[3]</output>
     </filter>
 </PropertyList>

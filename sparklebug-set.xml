@@ -124,10 +124,10 @@
                 <name>flight controls</name>
                 <path>Systems/flight-controls.xml</path>
             </autopilot>
-            <property-rule>
+            <autopilot>
                 <name>PFD</name>
                 <path>Systems/pfd.xml</path>
-            </property-rule>
+            </autopilot>
         </systems>
 
     </sim>
@@ -298,6 +298,16 @@
                 <v-deg type="double">0</v-deg>
                 <w-deg type="double">0</w-deg>
             </fpv>
+            <ground-track>
+                <u type="double">0</u>
+                <v type="double">0</v>
+            </ground-track>
+            <!-- gear status: 0 = up, 1 = transitioning, 2 = down & locked, 3 = failure -->
+            <gear-status type="int">0</gear-status>
+            <gear-status type="int">0</gear-status>
+            <gear-status type="int">0</gear-status>
+            <gear-status type="int">0</gear-status>
+            <orbitalv-kms type="double">0</orbitalv-kms>
         </pfd>
     </instrumentation>
 </PropertyList>
