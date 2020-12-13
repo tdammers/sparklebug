@@ -101,6 +101,8 @@ var PFD = {
                 'clip.alttape',
                 'clip.headingtape',
                 'clip.hsi',
+                'hsi.compass',
+                'hsi.groundspeed.track',
                 'hsi.groundspeed-u.line',
                 'hsi.groundspeed-u.excess-pos',
                 'hsi.groundspeed-u.excess-neg',
@@ -187,12 +189,14 @@ var PFD = {
         var gsU = me.props['gs-u'].getValue() or 0;
         var gsV = me.props['gs-v'].getValue() or 0;
         var airspeed = me.props['ias'].getValue() or 0;
+        var groundspeed = me.props['groundspeed'].getValue() or 0;
         var orbitalv = me.props['orbitalv'].getValue() or 0;
         var mach = me.props['mach'].getValue() or 0;
         var vspeed = me.props['vs'].getValue() or 0;
         var altitude = me.props['altitude'].getValue() or 0;
         var agl = me.props['altitude-agl'].getValue() or 0;
         var heading = me.props['heading'].getValue() or 0;
+        var track = me.props['track'].getValue() or 0;
 
         me.elems['horizon-pitch'].setTranslation(0, pitch * 6.4);
         me.elems['horizon'].setRotation(-bank * D2R);
@@ -224,14 +228,19 @@ var PFD = {
         me.elems['orbitalv.digital'].setTranslation(ovdX, ovdY);
         me.elems['mach.digital'].setText(sprintf('%5.2fM', mach));
 
-        me.elems['hsi.groundspeed-u.line'].setTranslation(0, gsU * -3.2);
-        me.elems['hsi.groundspeed-v.line'].setTranslation(gsV * 3.2, 0);
+        me.elems['hsi.groundspeed-u.line'].setTranslation(0, gsU * -3.2)
+                                          .setVisible(math.abs(groundspeed) < 50);
+        me.elems['hsi.groundspeed-v.line'].setTranslation(gsV * 3.2, 0)
+                                          .setVisible(math.abs(groundspeed) < 50);
         me.elems['hsi.groundspeed-u.excess-pos'].setVisible(gsU >= 20.0);
         me.elems['hsi.groundspeed-u.excess-neg'].setVisible(gsU <= -20.0);
         me.elems['hsi.groundspeed-v.excess-pos'].setVisible(gsV >= 20.0);
         me.elems['hsi.groundspeed-v.excess-neg'].setVisible(gsV <= -20.0);
 
         me.elems['heading.digital'].setText(sprintf('%03.0f', heading));
+        me.elems['hsi.compass'].setRotation(-heading * D2R);
+        me.elems['hsi.groundspeed.track'].setRotation((track-heading) * D2R)
+                                         .setVisible(math.abs(groundspeed) > 1);
 
         me.elems['engine.left.arrow'].setRotation((me.props['pitch-left'].getValue() or 0) * -math.pi);
         me.elems['engine.right.arrow'].setRotation((me.props['pitch-right'].getValue() or 0) * math.pi);
