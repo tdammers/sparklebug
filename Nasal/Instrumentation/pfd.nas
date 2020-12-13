@@ -44,6 +44,8 @@ var PFD = {
                 'pitch': props.globals.getNode('/orientation/pitch-deg'),
                 'fpv-v': props.globals.getNode('/instrumentation/pfd/fpv/v-deg'),
                 'fpv-w': props.globals.getNode('/instrumentation/pfd/fpv/w-deg'),
+                'pitch-left': props.globals.getNode('/surface-positions/left-engine-pitch-norm'),
+                'pitch-right': props.globals.getNode('/surface-positions/right-engine-pitch-norm'),
             };
 
         me.master = canvas_group;
@@ -59,6 +61,10 @@ var PFD = {
                 'radioAlt.digital',
                 'vspeed.digital.positive',
                 'vspeed.digital.negative',
+                'heading.digital',
+                'engine.right.arrow',
+                'engine.left.arrow',
+                'stardrive.status',
                 'pitchLaw.arrow',
                 'pitchLaw.label',
                 'bankLaw.arrow',
@@ -92,14 +98,15 @@ var PFD = {
     },
 
     update: func () {
-        var bank = me.props['bank'].getValue();
-        var pitch = me.props['pitch'].getValue();
-        var fpvV = me.props['fpv-v'].getValue();
-        var fpvW = me.props['fpv-w'].getValue();
-        var airspeed = me.props['tas'].getValue();
-        var vspeed = me.props['vs'].getValue();
-        var altitude = me.props['altitude'].getValue();
-        var agl = me.props['altitude-agl'].getValue();
+        var bank = me.props['bank'].getValue() or 0;
+        var pitch = me.props['pitch'].getValue() or 0;
+        var fpvV = me.props['fpv-v'].getValue() or 0;
+        var fpvW = me.props['fpv-w'].getValue() or 0;
+        var airspeed = me.props['ias'].getValue() or 0;
+        var vspeed = me.props['vs'].getValue() or 0;
+        var altitude = me.props['altitude'].getValue() or 0;
+        var agl = me.props['altitude-agl'].getValue() or 0;
+        var heading = me.props['heading'].getValue() or 0;
 
         me.elems['horizon-pitch'].setTranslation(0, pitch * 6.4);
         me.elems['horizon'].setRotation(-bank * D2R);
@@ -124,6 +131,11 @@ var PFD = {
         else {
             me.elems['radioAlt.digital'].hide();
         }
+
+        me.elems['heading.digital'].setText(sprintf('%03.0f', heading));
+
+        me.elems['engine.left.arrow'].setRotation(me.props['pitch-left'].getValue() * -math.pi);
+        me.elems['engine.right.arrow'].setRotation(me.props['pitch-right'].getValue() * math.pi);
     },
 };
 
