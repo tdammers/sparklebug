@@ -106,6 +106,39 @@
         <max>47.5</max>
     </filter>
 
+    <filter>
+        <type>gain</type>
+        <name>Alt tape current number</name>
+        <!-- in 100-ft increments -->
+        <gain>10</gain>
+        <input>
+            <expression>
+                <floor>
+                    <div>
+                        <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                        <value>1000</value>
+                    </div>
+                </floor>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/alttape/current-major</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <name>Alt tape offset</name>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <mod>
+                    <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+                    <value>1000</value>
+                </mod>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/alttape/offset-ft</output>
+    </filter>
+
     <!-- absolute (orbital) velocity -->
     <filter>
         <type>gain</type>

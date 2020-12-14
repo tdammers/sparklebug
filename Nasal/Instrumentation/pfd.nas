@@ -1,16 +1,19 @@
+# PFD for the Sparklebug space transport
+
 var pfd_display = [nil, nil];
 var pfd = [nil, nil];
 
 var clipElemTo = func (clippee, clipref) {
     var tranRect = clipref.getTransformedBounds();
-    var clipRect = sprintf("rect(%d,%d, %d,%d)",
+    var clipRect = sprintf("rect(%dpx,%dpx,%dpx,%dpx)",
             tranRect[1], # 0 ys
             tranRect[2], # 1 xe
             tranRect[3], # 2 ye
             tranRect[0]); #3 xs
     # coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
+    debug.dump('clip', id(clippee), id(clipref), clipRect);
     clippee.set("clip", clipRect);
-    clippee.set("clip-frame", canvas.Element.PARENT);
+    clippee.set("clip-frame", canvas.Element.GLOBAL);
 }
 
 var lawText = [
@@ -66,6 +69,15 @@ var PFD = {
                 'gear-status-1': props.globals.getNode('/instrumentation/pfd/gear-status[1]'),
                 'gear-status-2': props.globals.getNode('/instrumentation/pfd/gear-status[2]'),
                 'gear-status-3': props.globals.getNode('/instrumentation/pfd/gear-status[2]'),
+
+                'n1-0': props.globals.getNode('/engines/engine[0]/n1'),
+                'n2-0': props.globals.getNode('/engines/engine[0]/n2'),
+                'cutoff-0': props.globals.getNode('/engines/engine[0]/cutoff'),
+                'augment-0': props.globals.getNode('/engines/engine[0]/augmentation'),
+                'n1-1': props.globals.getNode('/engines/engine[1]/n1'),
+                'n2-1': props.globals.getNode('/engines/engine[1]/n2'),
+                'cutoff-1': props.globals.getNode('/engines/engine[1]/cutoff'),
+                'augment-1': props.globals.getNode('/engines/engine[1]/augmentation'),
             };
 
         me.master = canvas_group;
@@ -81,6 +93,9 @@ var PFD = {
                 'mach.digital',
                 'altitude.digital.major',
                 'altitude.digital.minor',
+                'altitude.tape',
+                'altitude.tape.current',
+                'altitude.tape.next',
                 'radioAlt.digital',
                 'vspeed.digital.positive',
                 'vspeed.digital.negative',
@@ -114,14 +129,30 @@ var PFD = {
                 'hsi.groundspeed-v.line',
                 'hsi.groundspeed-v.excess-pos',
                 'hsi.groundspeed-v.excess-neg',
+                'engine0.n1.pointer',
+                'engine0.n1.digital',
+                'engine0.n2.digital',
+                'engine0.off',
+                'engine0.augment',
+                'engine1.n1.pointer',
+                'engine1.n1.digital',
+                'engine1.n2.digital',
+                'engine1.off',
+                'engine1.augment',
             ];
         foreach (var key; keys) {
             me.elems[key] = me.master.getElementById(key);
             if (me.elems[key] == nil) {
                 debug.warn('Element does not exist: ' ~ key);
             }
+            else {
+                printf("%-30s | %s", key, id(me.elems[key]));
+            }
         }
 
+        clipElemTo(
+            me.elems['altitude.tape'],
+            me.elems['clip.alttape']);
         clipElemTo(
             me.elems['airspeed.knots.tape'],
             me.elems['clip.speedtape']);
@@ -139,7 +170,8 @@ var PFD = {
             me.elems['clip.vsi']);
 
         me.elems['clip.speedtape'].hide();
-        me.elems['clip.alttape'].hide();
+        # Uncommenting the next lines breaks clipping
+        # me.elems['clip.alttape'].hide();
         me.elems['clip.headingtape'].hide();
         me.elems['clip.hsi'].hide();
         me.elems['clip.vsi'].hide();
@@ -149,15 +181,59 @@ var PFD = {
         setlistener(
             '/fcs/pitch-law',
             func (law) { me.elems['pitchLaw.label'].setText(lawText[law.getValue()]); },
-            1);
+            1, 0);
         setlistener(
             '/fcs/bank-law',
             func (law) { me.elems['bankLaw.label'].setText(lawText[law.getValue()]); },
-            1);
+            1, 0);
         setlistener(
             '/fcs/yaw-law',
             func (law) { me.elems['yawLaw.label'].setText(lawText[law.getValue()]); },
-            1);
+            1, 0);
+        setlistener(
+            '/instrumentation/pfd/alttape/current-major',
+            func (node) {
+                var value = node.getValue();
+                me.elems['altitude.tape.current'].setText(sprintf("%4.0f", value));
+                me.elems['altitude.tape.next'].setText(sprintf("%4.0f", value + 10));
+            },
+            1, 0);
+        setlistener(
+            '/instrumentation/pfd/alttape/offset-ft',
+            func (node) {
+                var value = node.getValue();
+                me.elems['altitude.tape'].setTranslation(0, value * 0.32);
+            },
+            1, 0);
+
+        setlistener(
+            me.props['cutoff-0'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine0.off'].setVisible(visible);
+            },
+            1, 0);
+        setlistener(
+            me.props['augment-0'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine0.augment'].setVisible(visible);
+            },
+            1, 0);
+        setlistener(
+            me.props['cutoff-1'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine1.off'].setVisible(visible);
+            },
+            1, 0);
+        setlistener(
+            me.props['augment-1'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine1.augment'].setVisible(visible);
+            },
+            1, 0);
 
         for (var i = 0; i < 4; i = i + 1) {
             (func (i) {
@@ -257,6 +333,14 @@ var PFD = {
 
         me.elems['engine.left.arrow'].setRotation((me.props['pitch-left'].getValue() or 0) * -math.pi);
         me.elems['engine.right.arrow'].setRotation((me.props['pitch-right'].getValue() or 0) * math.pi);
+
+        for (var i = 0; i < 2; i += 1) {
+            var n1 = me.props['n1-' ~ i].getValue();
+            var n2 = me.props['n2-' ~ i].getValue();
+            me.elems['engine' ~ i ~ '.n1.pointer'].setRotation(n1 * 270 / 100 * D2R);
+            me.elems['engine' ~ i ~ '.n1.digital'].setText(sprintf('%3.0f', n1));
+            me.elems['engine' ~ i ~ '.n2.digital'].setText(sprintf('%3.0f', n2));
+        }
     },
 };
 
@@ -266,7 +350,8 @@ setlistener('sim/signals/fdm-initialized', func {
             'name': 'PFD' ~ i,
             'size': [1024, 512],
             'view': [1024, 512],
-            'mipmapping': 1
+            'mipmapping': 1,
+            'coverage-samples': 4,
         });
         pfd_display[i].addPlacement({'node': 'PFD' ~ (i + 1)});
         pfd[i] =

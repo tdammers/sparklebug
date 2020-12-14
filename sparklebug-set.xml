@@ -310,6 +310,10 @@
             <orbitalv-kms type="double">0</orbitalv-kms>
             <vs-fpm type="double">0</vs-fpm>
             <vs-needle-deg type="double">0</vs-needle-deg>
+            <alttape>
+                <current-major type="double">0</current-major>
+                <offset-ft type="double">0</offset-ft>
+            </alttape>
         </pfd>
     </instrumentation>
 </PropertyList>
