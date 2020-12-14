@@ -71,6 +71,41 @@
         <max>168</max>
     </filter>
 
+    <filter>
+        <type>gain</type>
+        <name>VS FPM</name>
+        <gain>60</gain>
+        <input>
+            <property>/velocities/down-relground-fps</property>
+        </input>
+        <output>/instrumentation/pfd/vs-fpm</output>
+    </filter>
+
+    <filter>
+        <type>gain</type>
+        <name>VS needle (degrees)</name>
+        <gain>1</gain>
+        <input>
+            <expression>
+                <table>
+                    <property>/instrumentation/pfd/vs-fpm</property>
+                    <entry><ind>-9000</ind><dep>-45</dep></entry>
+                    <entry><ind>-5000</ind><dep>-35</dep></entry>
+                    <entry><ind>-4000</ind><dep>-30</dep></entry>
+                    <entry><ind>-2000</ind><dep>-20</dep></entry>
+                    <entry><ind>0</ind><dep>0</dep></entry>
+                    <entry><ind>2000</ind><dep>20</dep></entry>
+                    <entry><ind>4000</ind><dep>30</dep></entry>
+                    <entry><ind>5000</ind><dep>35</dep></entry>
+                    <entry><ind>9000</ind><dep>45</dep></entry>
+                </table>
+            </expression>
+        </input>
+        <output>/instrumentation/pfd/vs-needle-deg</output>
+        <min>-47.5</min>
+        <max>47.5</max>
+    </filter>
+
     <!-- absolute (orbital) velocity -->
     <filter>
         <type>gain</type>

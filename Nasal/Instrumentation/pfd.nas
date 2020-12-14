@@ -52,7 +52,8 @@ var PFD = {
                 'wind-dir': props.globals.getNode('/environment/wind-from-heading-deg'),
                 'wind-speed': props.globals.getNode('/environment/wind-speed-kt'),
                 'groundspeed': props.globals.getNode('/velocities/groundspeed-kt'),
-                'vs': props.globals.getNode('/instrumentation/vertical-speed-indicator/indicated-speed-fpm'),
+                'vs': props.globals.getNode('/instrumentation/pfd/vs-fpm'),
+                'vs-needle': props.globals.getNode('/instrumentation/pfd/vs-needle-deg'),
                 'bank': props.globals.getNode('/orientation/roll-deg'),
                 'pitch': props.globals.getNode('/orientation/pitch-deg'),
                 'fpv-v': props.globals.getNode('/instrumentation/pfd/fpv/v-deg'),
@@ -83,6 +84,8 @@ var PFD = {
                 'radioAlt.digital',
                 'vspeed.digital.positive',
                 'vspeed.digital.negative',
+                'vsi.needle',
+                'vsi.scale',
                 'heading.digital',
                 'engine.right.arrow',
                 'engine.left.arrow',
@@ -101,6 +104,7 @@ var PFD = {
                 'clip.alttape',
                 'clip.headingtape',
                 'clip.hsi',
+                'clip.vsi',
                 'hsi.compass',
                 'hsi.groundspeed.track',
                 'hsi.groundspeed-u.line',
@@ -127,11 +131,18 @@ var PFD = {
         clipElemTo(
             me.elems['hsi.groundspeed-v.line'],
             me.elems['clip.hsi']);
+        clipElemTo(
+            me.elems['vsi.scale'],
+            me.elems['clip.vsi']);
+        clipElemTo(
+            me.elems['vsi.needle'],
+            me.elems['clip.vsi']);
 
         me.elems['clip.speedtape'].hide();
         me.elems['clip.alttape'].hide();
         me.elems['clip.headingtape'].hide();
         me.elems['clip.hsi'].hide();
+        me.elems['clip.vsi'].hide();
 
         me.elems['horizon'].setCenter(512, 256);
 
@@ -193,6 +204,7 @@ var PFD = {
         var orbitalv = me.props['orbitalv'].getValue() or 0;
         var mach = me.props['mach'].getValue() or 0;
         var vspeed = me.props['vs'].getValue() or 0;
+        var vsNeedleDeg = me.props['vs-needle'].getValue() or 0;
         var altitude = me.props['altitude'].getValue() or 0;
         var agl = me.props['altitude-agl'].getValue() or 0;
         var heading = me.props['heading'].getValue() or 0;
@@ -214,6 +226,7 @@ var PFD = {
             me.elems['vspeed.digital.positive'].hide();
             me.elems['vspeed.digital.negative'].hide();
         }
+        me.elems['vsi.needle'].setRotation(vsNeedleDeg * D2R);
         if (agl <= 9999) {
             me.elems['radioAlt.digital'].setText(sprintf('%4.0f', agl)).show();
         }

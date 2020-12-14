@@ -308,6 +308,8 @@
             <gear-status type="int">0</gear-status>
             <gear-status type="int">0</gear-status>
             <orbitalv-kms type="double">0</orbitalv-kms>
+            <vs-fpm type="double">0</vs-fpm>
+            <vs-needle-deg type="double">0</vs-needle-deg>
         </pfd>
     </instrumentation>
 </PropertyList>
