@@ -169,12 +169,11 @@ var PFD = {
             me.elems['vsi.needle'],
             me.elems['clip.vsi']);
 
-        me.elems['clip.speedtape'].hide();
-        # Uncommenting the next lines breaks clipping
-        # me.elems['clip.alttape'].hide();
-        me.elems['clip.headingtape'].hide();
-        me.elems['clip.hsi'].hide();
-        me.elems['clip.vsi'].hide();
+        me.elems['clip.speedtape'].setColorFill(0, 0, 0, 0);
+        me.elems['clip.alttape'].setColorFill(0, 0, 0, 0);
+        me.elems['clip.headingtape'].setColorFill(0, 0, 0, 0);
+        me.elems['clip.hsi'].setColorFill(0, 0, 0, 0);
+        me.elems['clip.vsi'].setColorFill(0, 0, 0, 0);
 
         me.elems['horizon'].setCenter(512, 256);
 
