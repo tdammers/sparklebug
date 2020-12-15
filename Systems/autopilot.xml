@@ -127,4 +127,89 @@
         <u_min>0</u_min>
         <u_max>0.95</u_max>
     </pid-controller>
+
+    <!-- bank controllers -->
+    <pi-simple-controller>
+        <name>HDG HOLD</name>
+        <enable>
+            <condition>
+                <and>
+                    <property>/controls/autoflight/autopilot/engage</property>
+                    <equals>
+                        <property>/controls/autoflight/lateral-mode</property>
+                        <value>0</value>
+                    </equals>
+                </and>
+            </condition>
+        </enable>
+        <input>
+            <property>/orientation/heading-deg</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/heading-select</property>
+        </reference>
+        <output>/autopilot/outputs/target-bank-angle</output>
+        <Kp>8</Kp>
+        <Ki>0</Ki>
+        <u_min>-30</u_min>
+        <u_max>30</u_max>
+    </pi-simple-controller>
+
+    <!-- pitch controllers -->
+    <pi-simple-controller>
+        <name>ALT HLD</name>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/controls/autoflight/vertical-mode</property>
+                    <value>0</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/instrumentation/altimeter/indicated-altitude-ft</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/altitude-select</property>
+        </reference>
+        <output>/autopilot/outputs/target-vertical-speed</output>
+        <Kp>8</Kp>
+        <Ki>2</Ki>
+        <u_min>-4000</u_min>
+        <u_max>4000</u_max>
+    </pi-simple-controller>
+
+    <filter>
+        <name>V/S input select</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/controls/autoflight/vertical-mode</property>
+                    <value>2</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/controls/autoflight/vertical-speed-select</property>
+        </input>
+        <output>/autopilot/outputs/target-vertical-speed</output>
+    </filter>
+
+    <pi-simple-controller>
+        <name>V/S controller</name>
+        <input>
+            <property>/instrumentation/pfd/vs-fpm</property>
+        </input>
+        <reference>
+            <property>/autopilot/outputs/target-vertical-speed</property>
+        </reference>
+        <output>/autopilot/outputs/target-pitch-angle</output>
+        <Kp>0.002</Kp>
+        <Ki>0.005</Ki>
+        <u_min>-30</u_min>
+        <u_max>30</u_max>
+    </pi-simple-controller>
+
 </PropertyList>

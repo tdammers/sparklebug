@@ -89,6 +89,8 @@ var PFD = {
                 'fpv',
                 'airspeed.digital',
                 'airspeed.knots.tape',
+                'airspeed.bug',
+                'airspeed.selected.digital',
                 'orbitalv.digital',
                 'mach.digital',
                 'altitude.digital.major',
@@ -96,12 +98,18 @@ var PFD = {
                 'altitude.tape',
                 'altitude.tape.current',
                 'altitude.tape.next',
+                'altitude.bug',
+                'altitude.selected.digital',
                 'radioAlt.digital',
                 'vspeed.digital.positive',
                 'vspeed.digital.negative',
                 'vsi.needle',
                 'vsi.scale',
+                'vs.bug',
+                'vs.selected.digital',
                 'heading.digital',
+                'heading.tape',
+                'heading.bug',
                 'engine.right.arrow',
                 'engine.left.arrow',
                 'stardrive.status',
@@ -154,6 +162,9 @@ var PFD = {
             me.elems['altitude.tape'],
             me.elems['clip.alttape']);
         clipElemTo(
+            me.elems['heading.tape'],
+            me.elems['clip.headingtape']);
+        clipElemTo(
             me.elems['airspeed.knots.tape'],
             me.elems['clip.speedtape']);
         clipElemTo(
@@ -202,6 +213,39 @@ var PFD = {
             func (node) {
                 var value = node.getValue();
                 me.elems['altitude.tape'].setTranslation(0, value * 0.32);
+            },
+            1, 0);
+
+        setlistener(
+            '/controls/autoflight/altitude-select',
+            func (node) {
+                var value = node.getValue();
+                me.elems['altitude.bug'].setTranslation(0, value * -0.32);
+                me.elems['altitude.selected.digital'].setText(sprintf("%6.0f", value));
+            },
+            1, 0);
+        setlistener(
+            '/controls/autoflight/speed-select',
+            func (node) {
+                var value = node.getValue();
+                me.elems['airspeed.bug'].setTranslation(0, value * -1.6);
+                me.elems['airspeed.selected.digital'].setText(sprintf("%3.0f", value));
+            },
+            1, 0);
+        setlistener(
+            '/controls/autoflight/heading-select',
+            func (node) {
+                var value = math.periodic(0, 360, node.getValue() or 0);
+                me.elems['heading.bug'].setTranslation(value * 6.4, 0);
+                # me.elems['heading.selected.digital'].setText(sprintf("%3.0f", value));
+            },
+            1, 0);
+        setlistener(
+            '/controls/autoflight/vertical-speed-select',
+            func (node) {
+                var value = node.getValue();
+                me.elems['vs.bug'].hide();
+                me.elems['vs.selected.digital'].setText(sprintf("%+4.0f", value));
             },
             1, 0);
 
@@ -326,6 +370,7 @@ var PFD = {
         me.elems['hsi.groundspeed-v.excess-neg'].setVisible(gsV <= -20.0);
 
         me.elems['heading.digital'].setText(sprintf('%03.0f', heading));
+        me.elems['heading.tape'].setTranslation(math.periodic(-180, 180, heading) * -6.4, 0);
         me.elems['hsi.compass'].setRotation(-heading * D2R);
         me.elems['hsi.groundspeed.track'].setRotation((track-heading) * D2R)
                                          .setVisible(math.abs(groundspeed) > 1);

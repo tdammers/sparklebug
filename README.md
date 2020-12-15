@@ -298,7 +298,7 @@ Development Status
             - ALT HOLD: done
             - AGL HOLD: done
             - V/S HOLD: done
-            - IAS HOLD: TODO
+            - IAS HOLD: done
             - Mach HOLD: TODO
         - Pitch
             - ALT HOLD: done
@@ -307,7 +307,7 @@ Development Status
             - IAS HOLD: TODO
             - Mach HOLD: TODO
         - Lateral
-            - HDG HOLD: TODO
+            - HDG HOLD: done
             - LNAV: TODO
         - Control logic: TODO
             - Alt capture (switch to ALT HOLD when reaching target altitude)

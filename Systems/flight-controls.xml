@@ -54,6 +54,12 @@
         <property>/orientation/roll-deg</property>
     </input>
     <reference>
+        <condition>
+            <property>/controls/autoflight/autopilot/engage</property>
+        </condition>
+        <property>/autopilot/outputs/target-bank-angle</property>
+    </reference>
+    <reference>
         <expression>
             <product>
                 <property>/controls/flight/aileron-sum</property>
@@ -72,6 +78,12 @@
     <input>
         <property>/orientation/pitch-deg</property>
     </input>
+    <reference>
+        <condition>
+            <property>/controls/autoflight/autopilot/engage</property>
+        </condition>
+        <property>/autopilot/outputs/target-pitch-angle</property>
+    </reference>
     <reference>
         <expression>
             <product>
@@ -120,6 +132,18 @@
     </input>
     <reference>
         <condition>
+            <or>
+                <property>/controls/autoflight/autopilot/engage</property>
+                <equals>
+                    <property>/fcs/bank-law</property>
+                    <value>2</value>
+                </equals>
+            </or>
+        </condition>
+        <property>/fcs/fbw/target-p</property>
+    </reference>
+    <reference>
+        <condition>
             <equals>
                 <property>/fcs/bank-law</property>
                 <value>1</value>
@@ -131,15 +155,6 @@
                 <value>0.5</value>
             </product>
         </expression>
-    </reference>
-    <reference>
-        <condition>
-            <equals>
-                <property>/fcs/bank-law</property>
-                <value>2</value>
-            </equals>
-        </condition>
-        <property>/fcs/fbw/target-p</property>
     </reference>
     <output><property>/fcs/fbw/aileron</property></output>
     <Kp>12</Kp>
@@ -156,6 +171,18 @@
     </input>
     <reference>
         <condition>
+            <or>
+                <property>/controls/autoflight/autopilot/engage</property>
+                <equals>
+                    <property>/fcs/pitch-law</property>
+                    <value>2</value>
+                </equals>
+            </or>
+        </condition>
+        <property>/fcs/fbw/target-q</property>
+    </reference>
+    <reference>
+        <condition>
             <equals>
                 <property>/fcs/pitch-law</property>
                 <value>1</value>
@@ -167,15 +194,6 @@
                 <value>-0.5</value>
             </product>
         </expression>
-    </reference>
-    <reference>
-        <condition>
-            <equals>
-                <property>/fcs/pitch-law</property>
-                <value>2</value>
-            </equals>
-        </condition>
-        <property>/fcs/fbw/target-q</property>
     </reference>
     <output><property>/fcs/fbw/elevator</property></output>
     <Kp>-24</Kp>
@@ -191,6 +209,19 @@
     <input>
         <property>/orientation/r-body</property>
     </input>
+    <reference>
+        <condition>
+            <or>
+                <equals>
+                    <property>/fcs/yaw-law</property>
+                    <value>2</value>
+                </equals>
+                <!-- when autopilot engaged, always use yaw damper -->
+                <property>/controls/autoflight/autopilot/engage</property>
+            </or>
+        </condition>
+        <property>/fcs/fbw/target-r</property>
+    </reference>
     <reference>
         <condition>
             <equals>
@@ -278,6 +309,18 @@
             <property>/fcs/wow</property>
         </condition>
         <property>/controls/flight/rudder-sum</property>
+    </input>
+    <input>
+        <condition>
+            <and>
+                <property>/controls/autoflight/autopilot/engage</property>
+                <equals>
+                    <property>/controls/autoflight/lateral-mode</property>
+                    <value>0</value>
+                </equals>
+            </and>
+        </condition>
+        <property>/fcs/fbw/rudder</property>
     </input>
     <input>
         <condition>

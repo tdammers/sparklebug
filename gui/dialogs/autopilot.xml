@@ -148,19 +148,11 @@
                         </binding>
                     </button>
                     <button>
-                        <legend>V/S HOLD</legend>
+                        <legend>LNAV</legend>
                         <binding>
                             <command>property-assign</command>
                             <property>/controls/autoflight/lateral-mode</property>
                             <value>1</value>
-                        </binding>
-                    </button>
-                    <button>
-                        <legend>IAS HOLD</legend>
-                        <binding>
-                            <command>property-assign</command>
-                            <property>/controls/autoflight/lateral-mode</property>
-                            <value>2</value>
                         </binding>
                     </button>
                 </group>
