@@ -4,7 +4,6 @@
 <PropertyList>
     <pi-simple-controller>
         <name>Autothrottle ALT hold</name>
-        <debug type="bool">true</debug>
         <enable>
             <condition>
                 <and>
@@ -66,7 +65,6 @@
     </pi-simple-controller>
     <pid-controller>
         <name>Autothrottle VS hold</name>
-        <debug type="bool">true</debug>
         <enable>
             <condition>
                 <and>
