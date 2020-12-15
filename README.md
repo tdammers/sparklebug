@@ -42,6 +42,34 @@ A typical mission would involve the following flight phases:
 Flying the Sparklebug
 ---------------------
 
+### General Considerations
+
+Fundamentally, the Sparklebug will fly in 3 very distinct regimes: hovering,
+aerodynamic, and orbital.
+
+In the **hovering** regimen, the main engines point fully or partially up and
+provide the majority of lift. When hovering, the Sparklebug flies similar to a
+helicopter: engine thrust is used to control vertical speed, and pitch, bank
+and yaw axes control lateral movement. (It is possible to also use engine
+pitch for forward speed control, but making fine-grained adjustments this way
+is difficult). When hovering, keep in mind that any control inputs may alter
+the effective amount of lift from the engines, and especially when banking and
+turning the aircraft, you may need to compensate with the throttle.
+
+In the **aerodynamic** regimen, the Sparklebug flies much like a conventional
+fixed-wing aircraft. The engines generate forward thrust, and are pointed fully
+or partially forward; vertical speed is controlled with pitch (and thrust), the
+yaw axis is typically configured to provide coordinated flight via yaw damping,
+and the bank axis is used for turning. Note however that the turn rate you can
+achieve is rather disappointing, due to the tiny wings. At high altitude, the
+stardrive can be enabled to provide additional thrust; the stardrive however
+cannot be tilted, so it always points forward.
+
+In the **orbital** regimen, the Sparklebug flies outside the atmosphere, and
+thus aerodynamic forces are not relevant. Orbital maneuvering is performed by
+turning the spacecraft with the RCS system, and applying thrust using the
+stardrive.
+
 ### The FBW System
 
 Each axis (pitch, bank, yaw) has its own separate FBW law; laws can be cycled
@@ -68,9 +96,27 @@ The **available FBW laws** are:
   banking by turning.
 
 **Engine Pitch** is controlled by the propeller pitch input. As a shortcut,
-pressing *Shift-H* will command a straigh-up pitch. The engine pitch commanded
+pressing *Shift-H* will command a straight-up pitch. The engine pitch commanded
 this way (prop pitch / Shift-H) is only the *base* pitch; yaw and or bank
 commands may add *differential* engine pitch to that.
+
+### The Autothrottle System (A/T)
+
+The autothrottle controls main engine thrust. Currently, the following modes
+are working:
+
+- **ALT HOLD**: Holds indicated barometric altitude.
+- **AGL HOLD**: Holds altitude above ground. Useful for hover-taxiing.
+- **V/S HOLD**: Holds vertical speed. This can be used for all sorts of things,
+  but the main use case is smooth vertical landings: maneuver into position in
+  AGL HOLD mode, then switch the V/S HOLD, set target V/S to -100 FPM, and
+  maintain your position until touchdown.
+
+Future modes to be implemented:
+
+- **IAS HOLD** and **MACH HOLD**: Holds airspeed.
+- **CLB** and **DES**: Set climb thrust / idle thrust respectively, for
+  operational climbs and descents in aerodynamic flight.
 
 ### Propulsion
 
@@ -179,7 +225,7 @@ below 60,000 ft.
 - Thrust: AS NEEDED
 - Gear: DOWN BELOW 200 KTS
 
-#### Landing
+#### Landing (straight down)
 
 - Yaw Law: RATE (1)
 - Altitude: <= 2000 FT
@@ -190,6 +236,30 @@ below 60,000 ft.
 - Sinkrate: 0 UNTIL ALIGNED; KEEP BELOW 500 FPM
 - Wheels: WOW
 - Thrust: IDLE
+
+#### Approach (conventional ops)
+
+- Altitude: AS PUBLISHED
+- Airspeed: 150-200 KTS
+- Main Engine Pitch: AS NEEDED
+- Thrust: AS NEEDED
+- Localizer: CAPTURE
+- Glideslope: CAPTURE
+- Gear: DOWN
+- 5 miles out:
+- Gear: DOWN AND LOCKED
+- Airspeed: 120-180 KTS
+
+#### Landing (conventional ops)
+
+- Gear: DOWN AND LOCKED
+- Altitude: 100 FT AGL
+- Engine Pitch: FULL UP
+- Yaw law: RATE (1)
+- Thrust: AS NEEDED
+- Runway Centerline: MAINTAIN
+- Airspeed: <= 30 KTS
+- Pitch / Bank: AS NEEDED FOR TAXIING
 
 Development Status
 ------------------
@@ -211,9 +281,37 @@ Development Status
     - doors, windows: TODO
     - particle animations for engines etc.: TODO
 - Systems:
-    - FBW: done (needs pitch thrust compensation)
-    - instruments: TODO
-    - autopilot: TODO
+    - FBW:
+        - DIRECT: done
+        - HOLD: done
+        - STAB: done
+        - SPD (pitch and bank only): TODO
+    - instruments:
+        - PFD: in progress
+        - MFD: TODO
+        - Glareshield panel (A/P control): TODO
+        - Center pedestal (engine controls): TODO
+        - Various other controls (gear, pressurization, fuel systems, ...):
+          TODO
+    - autopilot:
+        - A/T
+            - ALT HOLD: done
+            - AGL HOLD: done
+            - V/S HOLD: done
+            - IAS HOLD: TODO
+            - Mach HOLD: TODO
+        - Pitch
+            - ALT HOLD: done
+            - AGL HOLD: done
+            - V/S HOLD: done
+            - IAS HOLD: TODO
+            - Mach HOLD: TODO
+        - Lateral
+            - HDG HOLD: TODO
+            - LNAV: TODO
+        - Control logic: TODO
+            - Alt capture (switch to ALT HOLD when reaching target altitude)
+            - Autoland (?)
     - fuel systems, reactor: TODO
     - automatic main engine shutdown at altitude: TODO
     - prohibit stardrive activation below 60,000 ft: TODO
