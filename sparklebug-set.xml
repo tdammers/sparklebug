@@ -125,6 +125,10 @@
                 <path>Systems/flight-controls.xml</path>
             </autopilot>
             <autopilot>
+                <name>autopilot</name>
+                <path>Systems/autopilot.xml</path>
+            </autopilot>
+            <autopilot>
                 <name>PFD</name>
                 <path>Systems/pfd.xml</path>
             </autopilot>
@@ -291,6 +295,24 @@
             <aileron-sum type="double">0</aileron-sum>
             <rudder-sum type="double">0</rudder-sum>
         </flight>
+        <autoflight>
+            <!-- 0 = agl hold -->
+            <!-- 1 = alt hold -->
+            <!-- 2 = vertical speed hold -->
+            <!-- 3 = airspeed hold -->
+            <autothrottle-mode type="int">0</autothrottle-mode>
+
+            <!-- 0 = agl hold -->
+            <!-- 1 = alt hold -->
+            <!-- 2 = vertical speed hold -->
+            <!-- 3 = airspeed hold -->
+            <vertical-mode type="int">0</vertical-mode>
+
+            <altitude-select type="double">10000</altitude-select>
+            <agl-select type="double">100</agl-select>
+            <speed-select type="double">200</speed-select>
+            <mach-select type="double">0.8</mach-select>
+        </autoflight>
     </controls>
     <instrumentation>
         <pfd>

@@ -9,8 +9,8 @@
         <static_friction> 0.5 </static_friction>
         <dynamic_friction> 0.5 </dynamic_friction>
         <rolling_friction> 0.5 </rolling_friction>
-        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 100000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>LEFT</brake_group>
     </contact>
@@ -23,8 +23,8 @@
         <static_friction> 0.5 </static_friction>
         <dynamic_friction> 0.5 </dynamic_friction>
         <rolling_friction> 0.5 </rolling_friction>
-        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 100000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>RIGHT</brake_group>
     </contact>
@@ -37,8 +37,8 @@
         <static_friction> 0.5 </static_friction>
         <dynamic_friction> 0.5 </dynamic_friction>
         <rolling_friction> 0.5 </rolling_friction>
-        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 100000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>LEFT</brake_group>
     </contact>
@@ -51,8 +51,8 @@
         <static_friction> 0.5 </static_friction>
         <dynamic_friction> 0.5 </dynamic_friction>
         <rolling_friction> 0.5 </rolling_friction>
-        <spring_coeff unit="LBS/FT"> 200000 </spring_coeff>
-        <damping_coeff unit="LBS/FT/SEC"> 100000 </damping_coeff>
+        <spring_coeff unit="LBS/FT"> 100000 </spring_coeff>
+        <damping_coeff unit="LBS/FT/SEC"> 50000 </damping_coeff>
         <retractable>1</retractable>
         <brake_group>RIGHT</brake_group>
     </contact>

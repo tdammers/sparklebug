@@ -4,10 +4,16 @@
     <filter>
         <type>gain</type>
         <input>
+            <condition>
+                <property>/fcs/wow</property>
+            </condition>
+            <value>0</value>
+        </input>
+        <input>
             <expression>
                 <sum>
                     <property>/position/altitude-agl-ft</property>
-                    <value>-44.1</value>
+                    <value>-38.5</value>
                 </sum>
             </expression>
         </input>
