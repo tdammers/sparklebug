@@ -100,4 +100,31 @@
         <u_min>0</u_min>
         <u_max>0.95</u_max>
     </pid-controller>
+    <pid-controller>
+        <name>Autothrottle IAS hold</name>
+        <enable>
+            <condition>
+                <and>
+                    <property>/controls/autoflight/autothrottle-engage</property>
+                    <equals>
+                        <property>/controls/autoflight/autothrottle-mode</property>
+                        <value>3</value>
+                    </equals>
+                </and>
+            </condition>
+        </enable>
+        <input>
+            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/speed-select</property>
+        </reference>
+        <output>/controls/engines/engine[0]/throttle</output>
+        <output>/controls/engines/engine[1]/throttle</output>
+        <Kp>1</Kp>
+        <Ti>2</Ti>
+        <Td>0.01</Td>
+        <u_min>0</u_min>
+        <u_max>0.95</u_max>
+    </pid-controller>
 </PropertyList>
