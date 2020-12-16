@@ -11,7 +11,7 @@ var clipElemTo = func (clippee, clipref) {
             tranRect[3], # 2 ye
             tranRect[0]); #3 xs
     # coordinates are top,right,bottom,left (ys, xe, ye, xs) ref: l621 of simgear/canvas/CanvasElement.cxx
-    debug.dump('clip', id(clippee), id(clipref), clipRect);
+    # debug.dump('clip', id(clippee), id(clipref), clipRect);
     clippee.set("clip", clipRect);
     clippee.set("clip-frame", canvas.Element.GLOBAL);
 }
