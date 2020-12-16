@@ -38,6 +38,7 @@
         <default-padding>8</default-padding>
         <group>
             <layout>vbox</layout>
+            <valign>top</valign>
             <text>
                 <label>Autothrottle</label>
                 <halign>center</halign>
@@ -104,6 +105,7 @@
                 <layout>hbox</layout>
                 <group>
                     <layout>vbox</layout>
+                    <valign>top</valign>
                     <button>
                         <legend>ALT HOLD</legend>
                         <binding>
@@ -139,8 +141,9 @@
                 </group>
                 <group>
                     <layout>vbox</layout>
+                    <valign>top</valign>
                     <button>
-                        <legend>HDG HOLD</legend>
+                        <legend>LEVEL</legend>
                         <binding>
                             <command>property-assign</command>
                             <property>/controls/autoflight/lateral-mode</property>
@@ -148,13 +151,31 @@
                         </binding>
                     </button>
                     <button>
-                        <legend>LNAV</legend>
+                        <legend>SS HOLD</legend>
                         <binding>
                             <command>property-assign</command>
                             <property>/controls/autoflight/lateral-mode</property>
                             <value>1</value>
                         </binding>
                     </button>
+                    <button>
+                        <legend>HDG HOLD</legend>
+                        <binding>
+                            <command>property-assign</command>
+                            <property>/controls/autoflight/lateral-mode</property>
+                            <value>2</value>
+                        </binding>
+                    </button>
+                    <!--
+                    <button>
+                        <legend>LNAV</legend>
+                        <binding>
+                            <command>property-assign</command>
+                            <property>/controls/autoflight/lateral-mode</property>
+                            <value>3</value>
+                        </binding>
+                    </button>
+                    -->
                 </group>
             </group>
         </group>

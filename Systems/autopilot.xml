@@ -129,8 +129,9 @@
     </pid-controller>
 
     <!-- bank controllers -->
-    <pi-simple-controller>
-        <name>HDG HOLD</name>
+    <filter>
+        <name>WING LEVELER</name>
+        <type>gain</type>
         <enable>
             <condition>
                 <and>
@@ -143,13 +144,31 @@
             </condition>
         </enable>
         <input>
+            <value>0</value>
+        </input>
+        <output>/autopilot/outputs/target-bank-angle</output>
+    </filter>
+    <pi-simple-controller>
+        <name>HDG HOLD</name>
+        <enable>
+            <condition>
+                <and>
+                    <property>/controls/autoflight/autopilot/engage</property>
+                    <equals>
+                        <property>/controls/autoflight/lateral-mode</property>
+                        <value>2</value>
+                    </equals>
+                </and>
+            </condition>
+        </enable>
+        <input>
             <property>/orientation/heading-deg</property>
         </input>
         <reference>
             <property>/controls/autoflight/heading-select</property>
         </reference>
         <output>/autopilot/outputs/target-bank-angle</output>
-        <Kp>8</Kp>
+        <Kp>3</Kp>
         <Ki>0</Ki>
         <u_min>-30</u_min>
         <u_max>30</u_max>
@@ -173,8 +192,31 @@
             <property>/controls/autoflight/altitude-select</property>
         </reference>
         <output>/autopilot/outputs/target-vertical-speed</output>
-        <Kp>8</Kp>
-        <Ki>2</Ki>
+        <Kp>5</Kp>
+        <Ki>0.2</Ki>
+        <u_min>-4000</u_min>
+        <u_max>4000</u_max>
+    </pi-simple-controller>
+
+    <pi-simple-controller>
+        <name>AGL HLD</name>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/controls/autoflight/vertical-mode</property>
+                    <value>1</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/position/gear-agl-ft</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/agl-select</property>
+        </reference>
+        <output>/autopilot/outputs/target-vertical-speed</output>
+        <Kp>5</Kp>
+        <Ki>0.2</Ki>
         <u_min>-4000</u_min>
         <u_max>4000</u_max>
     </pi-simple-controller>
@@ -197,8 +239,19 @@
         <output>/autopilot/outputs/target-vertical-speed</output>
     </filter>
 
+
     <pi-simple-controller>
         <name>V/S controller</name>
+        <enable>
+            <condition>
+                <not>
+                    <equals>
+                        <property>/controls/autoflight/vertical-mode</property>
+                        <value>3</value>
+                    </equals>
+                </not>
+            </condition>
+        </enable>
         <input>
             <property>/instrumentation/pfd/vs-fpm</property>
         </input>
@@ -210,6 +263,29 @@
         <Ki>0.005</Ki>
         <u_min>-30</u_min>
         <u_max>30</u_max>
+    </pi-simple-controller>
+
+    <pi-simple-controller>
+        <name>IAS hold</name>
+        <enable>
+            <condition>
+                <equals>
+                    <property>/controls/autoflight/vertical-mode</property>
+                    <value>3</value>
+                </equals>
+            </condition>
+        </enable>
+        <input>
+            <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/speed-select</property>
+        </reference>
+        <output>/autopilot/outputs/target-pitch-angle</output>
+        <Kp>-1</Kp>
+        <Ki>-0.2</Ki>
+        <u_min>-10</u_min>
+        <u_max>20</u_max>
     </pi-simple-controller>
 
 </PropertyList>
