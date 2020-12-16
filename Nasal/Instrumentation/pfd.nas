@@ -96,6 +96,7 @@ var PFD = {
                 'fpv',
                 'airspeed.digital',
                 'airspeed.knots.tape',
+                'airspeed.kms.tape',
                 'airspeed.bug',
                 'airspeed.selected.digital',
                 'orbitalv.digital',
@@ -135,7 +136,10 @@ var PFD = {
                 'clip.headingtape',
                 'clip.hsi',
                 'clip.vsi',
+                'qnh.digital',
+                'qnh.unit',
                 'hsi.compass',
+                'hsi.heading.bug',
                 'hsi.groundspeed.track',
                 'hsi.groundspeed-u.line',
                 'hsi.groundspeed-u.excess-pos',
@@ -173,6 +177,9 @@ var PFD = {
             me.elems['clip.headingtape']);
         clipElemTo(
             me.elems['airspeed.knots.tape'],
+            me.elems['clip.speedtape']);
+        clipElemTo(
+            me.elems['airspeed.kms.tape'],
             me.elems['clip.speedtape']);
         clipElemTo(
             me.elems['hsi.groundspeed-u.line'],
@@ -244,6 +251,7 @@ var PFD = {
             func (node) {
                 var value = math.periodic(0, 360, node.getValue() or 0);
                 me.elems['heading.bug'].setTranslation(value * 6.4, 0);
+                me.elems['hsi.heading.bug'].setRotation(value * D2R);
                 # me.elems['heading.selected.digital'].setText(sprintf("%3.0f", value));
             },
             1, 0);
@@ -253,6 +261,13 @@ var PFD = {
                 var value = node.getValue();
                 me.elems['vs.bug'].hide();
                 me.elems['vs.selected.digital'].setText(sprintf("%+4.0f", value));
+            },
+            1, 0);
+        setlistener(
+            '/instrumentation/altimeter/setting-hpa',
+            func (node) {
+                var value = node.getValue();
+                me.elems['qnh.digital'].setText(sprintf('%-4.0f', value));
             },
             1, 0);
 
@@ -360,7 +375,12 @@ var PFD = {
             me.elems['radioAlt.digital'].hide();
         }
         me.elems['airspeed.digital'].setText(sprintf('%4.0f', airspeed));
-        me.elems['airspeed.knots.tape'].setTranslation(0, airspeed * 1.6);
+        me.elems['airspeed.knots.tape']
+            .setTranslation(0, airspeed * 1.6)
+            .setVisible(airspeed < 1500);
+        me.elems['airspeed.kms.tape']
+            .setTranslation(0, orbitalv * 160.0)
+            .setVisible(airspeed >= 1500);
         me.elems['orbitalv.digital'].setText(sprintf('%5.2f', orbitalv));
         var ovdX = math.min(168, math.max(-168, fpvV * 6.4));
         var ovdY = math.min(186, math.max(-186, fpvW * 6.4 - 16));
