@@ -49,6 +49,26 @@
 
 <!-- ATTITUDE CONTROLLERS -->
 <pi-simple-controller>
+    <name>FBW bank attitude lateral stabilization</name>
+    <input>
+        <property>/instrumentation/pfd/ground-track/v</property>
+    </input>
+    <reference>
+        <expression>
+            <product>
+                <property>/controls/flight/aileron-sum</property>
+                <value>30</value>
+            </product>
+        </expression>
+    </reference>
+    <output>/fcs/fbw/target-bank-angle</output>
+    <Kp>1</Kp>
+    <Ki>0.1</Ki>
+    <u_min>-5</u_min>
+    <u_max>5</u_max>
+</pi-simple-controller>
+
+<pi-simple-controller>
     <name>FBW bank attitude controller</name>
     <input>
         <property>/orientation/roll-deg</property>
@@ -58,6 +78,15 @@
             <property>/controls/autoflight/autopilot/engage</property>
         </condition>
         <property>/autopilot/outputs/target-bank-angle</property>
+    </reference>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/bank-law</property>
+                <value>3</value>
+            </equals>
+        </condition>
+        <property>/fcs/fbw/target-bank-angle</property>
     </reference>
     <reference>
         <expression>
@@ -74,6 +103,26 @@
 </pi-simple-controller>
 
 <pi-simple-controller>
+    <name>FBW pitch attitude lateral stabilization</name>
+    <input>
+        <property>/instrumentation/pfd/ground-track/u</property>
+    </input>
+    <reference>
+        <expression>
+            <product>
+                <property>/controls/flight/elevator-sum</property>
+                <value>30</value>
+            </product>
+        </expression>
+    </reference>
+    <output>/fcs/fbw/target-pitch-angle</output>
+    <Kp>-1</Kp>
+    <Ki>-0.1</Ki>
+    <u_min>-10</u_min>
+    <u_max>10</u_max>
+</pi-simple-controller>
+
+<pi-simple-controller>
     <name>FBW pitch attitude controller</name>
     <input>
         <property>/orientation/pitch-deg</property>
@@ -83,6 +132,15 @@
             <property>/controls/autoflight/autopilot/engage</property>
         </condition>
         <property>/autopilot/outputs/target-pitch-angle</property>
+    </reference>
+    <reference>
+        <condition>
+            <equals>
+                <property>/fcs/pitch-law</property>
+                <value>3</value>
+            </equals>
+        </condition>
+        <property>/fcs/fbw/target-pitch-angle</property>
     </reference>
     <reference>
         <expression>
@@ -138,6 +196,10 @@
                     <property>/fcs/bank-law</property>
                     <value>2</value>
                 </equals>
+                <equals>
+                    <property>/fcs/bank-law</property>
+                    <value>3</value>
+                </equals>
             </or>
         </condition>
         <property>/fcs/fbw/target-p</property>
@@ -176,6 +238,10 @@
                 <equals>
                     <property>/fcs/pitch-law</property>
                     <value>2</value>
+                </equals>
+                <equals>
+                    <property>/fcs/pitch-law</property>
+                    <value>3</value>
                 </equals>
             </or>
         </condition>

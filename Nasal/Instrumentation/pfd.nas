@@ -19,7 +19,14 @@ var clipElemTo = func (clippee, clipref) {
 var lawText = [
     'DIRECT',
     'HOLD',
-    'STAB',
+    'LEVEL',
+    'HOVER',
+];
+
+var yawLawText = [
+    'DIRECT',
+    'HOLD',
+    'DAMP',
 ];
 
 var PFD = {
@@ -198,7 +205,7 @@ var PFD = {
             1, 0);
         setlistener(
             '/fcs/yaw-law',
-            func (law) { me.elems['yawLaw.label'].setText(lawText[law.getValue()]); },
+            func (law) { me.elems['yawLaw.label'].setText(yawLawText[law.getValue()]); },
             1, 0);
         setlistener(
             '/instrumentation/pfd/alttape/current-major',

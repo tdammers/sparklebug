@@ -148,6 +148,22 @@
         </input>
         <output>/autopilot/outputs/target-bank-angle</output>
     </filter>
+    <filter>
+        <name>HDG error</name>
+        <type>gain</type>
+        <gain>1</gain>
+        <input>
+            <property>/orientation/heading-deg</property>
+        </input>
+        <reference>
+            <property>/controls/autoflight/heading-select</property>
+        </reference>
+        <output>/autopilot/outputs/heading-error-deg</output>
+        <period>
+            <min>-180</min>
+            <max>180</max>
+        </period>
+    </filter>
     <pi-simple-controller>
         <name>HDG HOLD</name>
         <enable>
@@ -162,10 +178,10 @@
             </condition>
         </enable>
         <input>
-            <property>/orientation/heading-deg</property>
+            <property>/autopilot/outputs/heading-error-deg</property>
         </input>
         <reference>
-            <property>/controls/autoflight/heading-select</property>
+            <value>0</value>
         </reference>
         <output>/autopilot/outputs/target-bank-angle</output>
         <Kp>3</Kp>

@@ -181,6 +181,7 @@
                 <binding>
                     <command>property-cycle</command>
                     <property>/fcs/pitch-law</property>
+                    <value>3</value>
                     <value>2</value>
                     <value>1</value>
                     <value>0</value>
@@ -192,6 +193,7 @@
                 <binding>
                     <command>property-cycle</command>
                     <property>/fcs/bank-law</property>
+                    <value>3</value>
                     <value>2</value>
                     <value>1</value>
                     <value>0</value>
@@ -217,6 +219,7 @@
                     <value>0</value>
                     <value>1</value>
                     <value>2</value>
+                    <value>3</value>
                 </binding>
             </key>
             <key n="119">
@@ -228,6 +231,7 @@
                     <value>0</value>
                     <value>1</value>
                     <value>2</value>
+                    <value>3</value>
                 </binding>
             </key>
             <key n="101">
