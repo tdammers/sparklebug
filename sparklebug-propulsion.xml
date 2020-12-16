@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <propulsion>
-    <!-- LEFT MAIN -->
+    <!-- LEFT MAIN 1 -->
     <engine file='main-engine'>
         <location unit="M">
             <x>  0 </x>
@@ -8,6 +8,8 @@
             <z>  0 </z>
         </location>
         <feed>0</feed>
+        <feed>2</feed>
+        <feed>3</feed>
         <thruster file="direct">
             <location unit="M">
                 <x>0</x>
@@ -21,14 +23,39 @@
             </orient>
         </thruster>
     </engine>
-    <!-- RIGHT MAIN -->
+    <!-- LEFT MAIN 2 -->
+    <engine file='main-engine'>
+        <location unit="M">
+            <x>  0 </x>
+            <y>-25 </y>
+            <z>  0 </z>
+        </location>
+        <feed>0</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <thruster file="direct">
+            <location unit="M">
+                <x>0</x>
+                <y>-25</y>
+                <z>0</z>
+            </location>
+            <orient unit="DEG">
+                <roll>0</roll>
+                <pitch>90</pitch>
+                <yaw>0</yaw>
+            </orient>
+        </thruster>
+    </engine>
+    <!-- RIGHT MAIN 1 -->
     <engine file='main-engine'>
         <location unit="M">
             <x>  0 </x>
             <y> 25 </y>
             <z>  0 </z>
         </location>
-        <feed>0</feed>
+        <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
         <thruster file="direct">
             <location unit="M">
                 <x>0</x>
@@ -42,24 +69,25 @@
             </orient>
         </thruster>
     </engine>
-    <!-- STARDRIVE FORE -->
-    <engine file='stardrive'>
+    <!-- RIGHT MAIN 2 -->
+    <engine file='main-engine'>
         <location unit="M">
-            <x> 10 </x>
-            <y>  0 </y>
+            <x>  0 </x>
+            <y> 25 </y>
             <z>  0 </z>
         </location>
-        <feed>0</feed>
         <feed>1</feed>
-        <thruster file="stardrive-nozzle">
+        <feed>2</feed>
+        <feed>3</feed>
+        <thruster file="direct">
             <location unit="M">
-                <x>10</x>
-                <y>0</y>
+                <x>0</x>
+                <y>25</y>
                 <z>0</z>
             </location>
             <orient unit="DEG">
                 <roll>0</roll>
-                <pitch>180</pitch>
+                <pitch>90</pitch>
                 <yaw>0</yaw>
             </orient>
         </thruster>
@@ -73,6 +101,9 @@
         </location>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <thruster file="stardrive-nozzle">
             <location unit="M">
                 <x>-43</x>
@@ -92,6 +123,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>44</x>
             <y>-4</y>
@@ -115,6 +149,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>44</x>
             <y>4</y>
@@ -137,6 +174,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>-44</x>
             <y>-4</y>
@@ -160,6 +200,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>-44</x>
             <y>4</y>
@@ -183,6 +226,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>44</x>
             <y>0</y>
@@ -206,6 +252,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>44</x>
             <y>0</y>
@@ -230,6 +279,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>-44</x>
             <y>0</y>
@@ -253,6 +305,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>-44</x>
             <y>0</y>
@@ -276,6 +331,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>0</x>
             <y>-15</y>
@@ -299,6 +357,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>0</x>
             <y>-15</y>
@@ -322,6 +383,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>0</x>
             <y>15</y>
@@ -345,6 +409,9 @@
     <engine file='rcs-thruster'>
         <feed>0</feed>
         <feed>1</feed>
+        <feed>2</feed>
+        <feed>3</feed>
+        <feed>4</feed>
         <location unit="M">
             <x>0</x>
             <y>15</y>
@@ -368,6 +435,33 @@
     <tank type="FUEL" number="0">
         <location unit="M">
             <x>0.0</x>
+            <y>-8.0</y>
+            <z>0.0</z>
+        </location>
+        <capacity unit="KG">40000</capacity>
+        <contents unit="KG">40000</contents>
+    </tank>
+    <tank type="FUEL" number="0">
+        <location unit="M">
+            <x>0.0</x>
+            <y>8.0</y>
+            <z>0.0</z>
+        </location>
+        <capacity unit="KG">40000</capacity>
+        <contents unit="KG">40000</contents>
+    </tank>
+    <tank type="FUEL" number="0">
+        <location unit="M">
+            <x>10.0</x>
+            <y>0.0</y>
+            <z>0.0</z>
+        </location>
+        <capacity unit="KG">50000</capacity>
+        <contents unit="KG">50000</contents>
+    </tank>
+    <tank type="FUEL" number="0">
+        <location unit="M">
+            <x>-10.0</x>
             <y>0.0</y>
             <z>0.0</z>
         </location>
@@ -380,8 +474,8 @@
             <y>0.0</y>
             <z>0.0</z>
         </location>
-        <capacity unit="KG">50000</capacity>
-        <contents unit="KG">50000</contents>
+        <capacity unit="KG">10000</capacity>
+        <contents unit="KG">10000</contents>
     </tank>
 </propulsion>
 

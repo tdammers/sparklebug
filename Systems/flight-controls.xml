@@ -428,7 +428,7 @@
             <sin>
                 <product>
                     <value>3.141592653589793</value>
-                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                    <property>/controls/engines/engine[2]/propeller-pitch</property>
                 </product>
             </sin>
         </expression>
@@ -458,7 +458,7 @@
             <cos>
                 <product>
                     <value>3.141592653589793</value>
-                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                    <property>/controls/engines/engine[2]/propeller-pitch</property>
                 </product>
             </cos>
         </expression>
@@ -480,10 +480,10 @@
                     <property>/fcs/aileron</property>
                     <property>/fcs/aileron-to-left-engine-pitch</property>
                 </product>
-                <product>
+                <sum>
                     <property>/controls/engines/engine[0]/propeller-pitch</property>
-                    <value>2</value>
-                </product>
+                    <property>/controls/engines/engine[1]/propeller-pitch</property>
+                </sum>
             </sum>
         </expression>
     </input>
@@ -503,10 +503,10 @@
                     <property>/fcs/aileron</property>
                     <property>/fcs/aileron-to-right-engine-pitch</property>
                 </product>
-                <product>
-                    <property>/controls/engines/engine[1]/propeller-pitch</property>
-                    <value>2</value>
-                </product>
+                <sum>
+                    <property>/controls/engines/engine[2]/propeller-pitch</property>
+                    <property>/controls/engines/engine[3]/propeller-pitch</property>
+                </sum>
             </sum>
         </expression>
     </input>

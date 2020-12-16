@@ -81,10 +81,21 @@ var PFD = {
                 'n2-0': props.globals.getNode('/engines/engine[0]/n2'),
                 'cutoff-0': props.globals.getNode('/engines/engine[0]/cutoff'),
                 'augment-0': props.globals.getNode('/engines/engine[0]/augmentation'),
+
                 'n1-1': props.globals.getNode('/engines/engine[1]/n1'),
                 'n2-1': props.globals.getNode('/engines/engine[1]/n2'),
                 'cutoff-1': props.globals.getNode('/engines/engine[1]/cutoff'),
                 'augment-1': props.globals.getNode('/engines/engine[1]/augmentation'),
+
+                'n1-2': props.globals.getNode('/engines/engine[2]/n1'),
+                'n2-2': props.globals.getNode('/engines/engine[2]/n2'),
+                'cutoff-2': props.globals.getNode('/engines/engine[2]/cutoff'),
+                'augment-2': props.globals.getNode('/engines/engine[2]/augmentation'),
+
+                'n1-3': props.globals.getNode('/engines/engine[3]/n1'),
+                'n2-3': props.globals.getNode('/engines/engine[3]/n2'),
+                'cutoff-3': props.globals.getNode('/engines/engine[3]/cutoff'),
+                'augment-3': props.globals.getNode('/engines/engine[3]/augmentation'),
             };
 
         me.master = canvas_group;
@@ -150,14 +161,28 @@ var PFD = {
                 'hsi.groundspeed-v.excess-neg',
                 'engine0.n1.pointer',
                 'engine0.n1.digital',
+                'engine0.n1.gauge',
                 'engine0.n2.digital',
                 'engine0.off',
                 'engine0.augment',
                 'engine1.n1.pointer',
                 'engine1.n1.digital',
+                'engine1.n1.gauge',
                 'engine1.n2.digital',
                 'engine1.off',
                 'engine1.augment',
+                'engine2.n1.pointer',
+                'engine2.n1.digital',
+                'engine2.n1.gauge',
+                'engine2.n2.digital',
+                'engine2.off',
+                'engine2.augment',
+                'engine3.n1.pointer',
+                'engine3.n1.digital',
+                'engine3.n1.gauge',
+                'engine3.n2.digital',
+                'engine3.off',
+                'engine3.augment',
             ];
         foreach (var key; keys) {
             me.elems[key] = me.master.getElementById(key);
@@ -299,6 +324,20 @@ var PFD = {
                 me.elems['engine1.augment'].setVisible(visible);
             },
             1, 0);
+        setlistener(
+            me.props['cutoff-2'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine2.off'].setVisible(visible);
+            },
+            1, 0);
+        setlistener(
+            me.props['cutoff-3'],
+            func (node) {
+                var visible = node.getBoolValue();
+                me.elems['engine3.off'].setVisible(visible);
+            },
+            1, 0);
 
         for (var i = 0; i < 4; i = i + 1) {
             (func (i) {
@@ -405,7 +444,7 @@ var PFD = {
         me.elems['engine.left.arrow'].setRotation((me.props['pitch-left'].getValue() or 0) * -math.pi);
         me.elems['engine.right.arrow'].setRotation((me.props['pitch-right'].getValue() or 0) * math.pi);
 
-        for (var i = 0; i < 2; i += 1) {
+        for (var i = 0; i < 4; i += 1) {
             var n1 = me.props['n1-' ~ i].getValue();
             var n2 = me.props['n2-' ~ i].getValue();
             me.elems['engine' ~ i ~ '.n1.pointer'].setRotation(n1 * 270 / 100 * D2R);

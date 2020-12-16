@@ -21,45 +21,23 @@
     </channel>
 
     <channel name="Stardrive">
-        <!-- reverse thruster (pointing forward) -->
-        <pure_gain name="fcs/throttle-pos-norm[2]">
-            <input>/fcs/stardrive/throttle</input>
-            <!-- neutered for now -->
-            <gain>-1</gain>
-            <clipto>
-                <min>0</min>
-                <max>1</max>
-            </clipto>
-            <output>fcs/throttle-pos-norm[2]</output>
-        </pure_gain>
-        <!-- tail thruster (pointing astern) -->
-        <pure_gain name="fcs/throttle-pos-norm[3]">
-            <input>/fcs/stardrive/throttle</input>
-            <!-- neutered for now -->
-            <gain>1</gain>
-            <clipto>
-                <min>0</min>
-                <max>1</max>
-            </clipto>
-            <output>fcs/throttle-pos-norm[3]</output>
-        </pure_gain>
-    </channel>
-
-    <channel name="RCS">
-        <!-- yaw axis -->
+        <!-- tail thruster -->
         <pure_gain name="fcs/throttle-pos-norm[4]">
-            <input>/fcs/rudder</input>
-            <gain>-1</gain>
+            <input>/fcs/stardrive/throttle</input>
+            <gain>1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
             </clipto>
             <output>fcs/throttle-pos-norm[4]</output>
         </pure_gain>
+    </channel>
 
+    <channel name="RCS">
+        <!-- yaw axis -->
         <pure_gain name="fcs/throttle-pos-norm[5]">
             <input>/fcs/rudder</input>
-            <gain>1</gain>
+            <gain>-1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -79,7 +57,7 @@
 
         <pure_gain name="fcs/throttle-pos-norm[7]">
             <input>/fcs/rudder</input>
-            <gain>-1</gain>
+            <gain>1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -87,9 +65,8 @@
             <output>fcs/throttle-pos-norm[7]</output>
         </pure_gain>
 
-        <!-- pitch axis -->
         <pure_gain name="fcs/throttle-pos-norm[8]">
-            <input>/fcs/elevator</input>
+            <input>/fcs/rudder</input>
             <gain>-1</gain>
             <clipto>
                 <min>0</min>
@@ -98,9 +75,10 @@
             <output>fcs/throttle-pos-norm[8]</output>
         </pure_gain>
 
+        <!-- pitch axis -->
         <pure_gain name="fcs/throttle-pos-norm[9]">
             <input>/fcs/elevator</input>
-            <gain>1</gain>
+            <gain>-1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -120,7 +98,7 @@
 
         <pure_gain name="fcs/throttle-pos-norm[11]">
             <input>/fcs/elevator</input>
-            <gain>-1</gain>
+            <gain>1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -128,10 +106,9 @@
             <output>fcs/throttle-pos-norm[11]</output>
         </pure_gain>
 
-        <!-- bank axis -->
         <pure_gain name="fcs/throttle-pos-norm[12]">
-            <input>/fcs/aileron</input>
-            <gain>-0.5</gain>
+            <input>/fcs/elevator</input>
+            <gain>-1</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -139,9 +116,10 @@
             <output>fcs/throttle-pos-norm[12]</output>
         </pure_gain>
 
+        <!-- bank axis -->
         <pure_gain name="fcs/throttle-pos-norm[13]">
             <input>/fcs/aileron</input>
-            <gain>0.5</gain>
+            <gain>-0.5</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
@@ -161,12 +139,22 @@
 
         <pure_gain name="fcs/throttle-pos-norm[15]">
             <input>/fcs/aileron</input>
-            <gain>-0.5</gain>
+            <gain>0.5</gain>
             <clipto>
                 <min>0</min>
                 <max>1</max>
             </clipto>
             <output>fcs/throttle-pos-norm[15]</output>
+        </pure_gain>
+
+        <pure_gain name="fcs/throttle-pos-norm[16]">
+            <input>/fcs/aileron</input>
+            <gain>-0.5</gain>
+            <clipto>
+                <min>0</min>
+                <max>1</max>
+            </clipto>
+            <output>fcs/throttle-pos-norm[16]</output>
         </pure_gain>
 
     </channel>

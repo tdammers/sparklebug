@@ -37,9 +37,13 @@
                         <script><![CDATA[
                            setprop('/controls/engines/engine[0]/starter', 1);
                            setprop('/controls/engines/engine[1]/starter', 1);
+                           setprop('/controls/engines/engine[2]/starter', 1);
+                           setprop('/controls/engines/engine[3]/starter', 1);
                            settimer(func(){
                                setprop('/controls/engines/engine[0]/cutoff', 0);
                                setprop('/controls/engines/engine[1]/cutoff', 0);
+                               setprop('/controls/engines/engine[2]/cutoff', 0);
+                               setprop('/controls/engines/engine[3]/cutoff', 0);
                            }, 5);
                         ]]></script>
                         </binding>
@@ -256,6 +260,16 @@
                 <binding>
                     <command>property-assign</command>
                     <property>/controls/engines/engine[1]/propeller-pitch</property>
+                    <value>0.5</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/engines/engine[2]/propeller-pitch</property>
+                    <value>0.5</value>
+                </binding>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/controls/engines/engine[3]/propeller-pitch</property>
                     <value>0.5</value>
                 </binding>
             </key>

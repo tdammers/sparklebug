@@ -6,11 +6,11 @@
 -->
 
 <turbine_engine name="sparklebug-main-engine">
-    <milthrust>1000000</milthrust>
-    <maxthrust>1500000</maxthrust>
+    <milthrust>500000</milthrust>
+    <maxthrust>750000</maxthrust>
     <bypassratio>0</bypassratio>
     <tsfc>0.1</tsfc>
-    <atsfc>0.11</atsfc>
+    <atsfc>0.12</atsfc>
     <bleed>0.03</bleed>
     <idlen1>10</idlen1>
     <idlen2>35</idlen2>

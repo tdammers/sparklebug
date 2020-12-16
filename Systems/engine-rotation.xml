@@ -12,6 +12,7 @@
     <gain>3.141592653589793</gain>
     <input>/surface-positions/left-engine-pitch-norm</input>
     <output>/fdm/jsbsim/propulsion/engine[0]/pitch-angle-rad</output>
+    <output>/fdm/jsbsim/propulsion/engine[1]/pitch-angle-rad</output>
 </filter>
 
 <filter>
@@ -25,7 +26,8 @@
     <type>gain</type>
     <gain>3.141592653589793</gain>
     <input>/surface-positions/right-engine-pitch-norm</input>
-    <output>/fdm/jsbsim/propulsion/engine[1]/pitch-angle-rad</output>
+    <output>/fdm/jsbsim/propulsion/engine[2]/pitch-angle-rad</output>
+    <output>/fdm/jsbsim/propulsion/engine[3]/pitch-angle-rad</output>
 </filter>
 
 </PropertyList>

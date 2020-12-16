@@ -94,6 +94,8 @@
         </reference>
         <output>/controls/engines/engine[0]/throttle</output>
         <output>/controls/engines/engine[1]/throttle</output>
+        <output>/controls/engines/engine[2]/throttle</output>
+        <output>/controls/engines/engine[3]/throttle</output>
         <Kp>0.0002</Kp>
         <Ti>3</Ti>
         <Td>0.01</Td>
@@ -121,6 +123,8 @@
         </reference>
         <output>/controls/engines/engine[0]/throttle</output>
         <output>/controls/engines/engine[1]/throttle</output>
+        <output>/controls/engines/engine[2]/throttle</output>
+        <output>/controls/engines/engine[3]/throttle</output>
         <Kp>1</Kp>
         <Ti>2</Ti>
         <Td>0.01</Td>
