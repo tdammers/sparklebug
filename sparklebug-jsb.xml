@@ -58,12 +58,52 @@
         <ixy unit="SLUG*FT2"> 0 </ixy>
         <ixz unit="SLUG*FT2"> 0.74e+06 </ixz>
         <iyz unit="SLUG*FT2"> 0 </iyz>
-        <emptywt unit="KG">128100</emptywt>
+        <emptywt unit="KG">98000</emptywt>
         <location name="CG" unit="M">
             <x>0</x>
             <y>0</y>
             <z>0</z>
         </location>
+        <pointmass name="Flight Crew">
+            <weight unit="KG">160</weight>
+            <location name="POINTMASS" unit="M">
+                <x>42</x>
+                <y>0</y>
+                <z>2</z>
+            </location>
+        </pointmass>
+        <pointmass name="Cabin Crew">
+            <weight unit="KG">320</weight>
+            <location name="POINTMASS" unit="M">
+                <x>-21</x>
+                <y>0</y>
+                <z>2</z>
+            </location>
+        </pointmass>
+        <pointmass name="Passengers (front)">
+            <weight unit="KG">1000</weight>
+            <location name="POINTMASS" unit="IN">
+                <x>20</x>
+                <y>0</y>
+                <z>2</z>
+            </location>
+        </pointmass>
+        <pointmass name="Passengers (back)">
+            <weight unit="KG">1000</weight>
+            <location name="POINTMASS" unit="IN">
+                <x>-20</x>
+                <y>0</y>
+                <z>1</z>
+            </location>
+        </pointmass>
+        <pointmass name="Cargo Bay">
+            <weight unit="KG">50000</weight>
+            <location name="POINTMASS" unit="M">
+                <x>0</x>
+                <y>0</y>
+                <z>-4</z>
+            </location>
+        </pointmass>
     </mass_balance>
 
 

@@ -137,8 +137,60 @@
                 <path>Systems/pfd.xml</path>
             </autopilot>
         </systems>
-
     </sim>
+
+    <consumables>
+        <fuel>
+            <tank n="0">
+                <name>Left Wing Fuel Tank</name>
+            </tank>
+            <tank n="1">
+                <name>Right Wing Fuel Tank</name>
+            </tank>
+            <tank n="2">
+                <name>Forward Tank</name>
+            </tank>
+            <tank n="3">
+                <name>Rear Tank</name>
+            </tank>
+            <tank n="4">
+                <name>Oxidizer Tank</name>
+            </tank>
+        </fuel>
+    </consumables>
+
+    <payload>
+        <weight n="0">
+            <name>Flight Crew</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+            <min-lb type="double">120</min-lb>
+            <max-lb type="double">400</max-lb>
+        </weight>
+        <weight n="1">
+            <name>Cabin Crew</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+            <min-lb type="double">0</min-lb>
+            <max-lb type="double">800</max-lb>
+        </weight>
+        <weight n="2">
+            <name>Passengers (front)</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+            <min-lb type="double">0</min-lb>
+            <max-lb type="double">2500</max-lb>
+        </weight>
+        <weight n="3">
+            <name>Passengers (back)</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+            <min-lb type="double">0</min-lb>
+            <max-lb type="double">2500</max-lb>
+        </weight>
+        <weight n="4">
+            <name>Cargo Bay</name>
+            <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+            <min-lb type="double">0</min-lb>
+            <max-lb type="double">200000</max-lb>
+        </weight>
+    </payload>
 
     <input>
         <keyboard>
