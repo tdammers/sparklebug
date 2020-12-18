@@ -67,11 +67,8 @@ var OrbitPage = {
         m.elems['nu-pointer'] = m.canvas_group
                                 .createChild('path')
                                 .moveTo(512, 256)
-                                .lineTo(768, 256)
+                                .lineTo(256, 256)
                                 .setCenter(512, 256)
-                                .setColor(255, 255, 0, 1);
-        m.elems['orbit'] = m.canvas_group
-                                .createChild('path')
                                 .setColor(255, 255, 0, 1);
         m.elems['karman'] = m.canvas_group
                                 .createChild('path')
@@ -82,6 +79,9 @@ var OrbitPage = {
                                 .setColorFill(0, 0, 64, 1)
                                 .setColor(0, 0, 255, 1)
                                 .circle(128, 512, 256);
+        m.elems['orbit'] = m.canvas_group
+                                .createChild('path')
+                                .setColor(255, 255, 0, 1);
         m.elems['perigee-digital'] = m.canvas_group
                                 .createChild('text')
                                 .setFont('LiberationMono-Regular')
@@ -115,8 +115,8 @@ var OrbitPage = {
                 b * 128 / earthRadius,
                 512 + c * 128 / earthRadius, 
                 256);
-        me.elems['perigee-digital'].setText(sprintf('%6.1f', a - c));
-        me.elems['apogee-digital'].setText(sprintf('%6.1f', a + c));
+        me.elems['perigee-digital'].setText(sprintf('%6.1f', (a - c) / 1000));
+        me.elems['apogee-digital'].setText(sprintf('%6.1f', (a + c) / 1000));
     },
 };
 
@@ -161,13 +161,13 @@ var MFD = {
         me.master = canvas_group;
 
         me.addPage(OrbitPage);
-        me.setActivePage(0);
         me.titleElem =
             me.master.createChild('text')
                 .setColor(0, 255, 0, 1)
                 .setAlignment('center-top')
                 .setFont('LiberationMono-Regular')
                 .setFontSize(16, 1);
+        me.setActivePage(0);
 
         return me;
     },
