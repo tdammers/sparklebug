@@ -151,14 +151,6 @@
                         </binding>
                     </button>
                     <button>
-                        <legend>SS HOLD</legend>
-                        <binding>
-                            <command>property-assign</command>
-                            <property>/controls/autoflight/lateral-mode</property>
-                            <value>1</value>
-                        </binding>
-                    </button>
-                    <button>
                         <legend>HDG HOLD</legend>
                         <binding>
                             <command>property-assign</command>

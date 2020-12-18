@@ -70,6 +70,7 @@ var PFD = {
                 'fpv-w': props.globals.getNode('/instrumentation/pfd/fpv/w-deg'),
                 'gs-u': props.globals.getNode('/instrumentation/pfd/ground-track/u'),
                 'gs-v': props.globals.getNode('/instrumentation/pfd/ground-track/v'),
+                'slip': props.globals.getNode('/instrumentation/slip-skid-ball/indicated-slip-skid'),
                 'pitch-left': props.globals.getNode('/surface-positions/left-engine-pitch-norm'),
                 'pitch-right': props.globals.getNode('/surface-positions/right-engine-pitch-norm'),
                 'gear-status-0': props.globals.getNode('/instrumentation/pfd/gear-status[0]'),
@@ -96,6 +97,16 @@ var PFD = {
                 'n2-3': props.globals.getNode('/engines/engine[3]/n2'),
                 'cutoff-3': props.globals.getNode('/engines/engine[3]/cutoff'),
                 'augment-3': props.globals.getNode('/engines/engine[3]/augmentation'),
+
+                'autothrottle-mode': props.globals.getNode('/autopilot/textual/autothrottle-mode'),
+                'autothrottle-armed': props.globals.getNode('/autopilot/textual/autothrottle-armed'),
+                'lateral-mode': props.globals.getNode('/autopilot/textual/lateral-mode'),
+                'lateral-armed': props.globals.getNode('/autopilot/textual/lateral-armed'),
+                'vertical-mode': props.globals.getNode('/autopilot/textual/vertical-mode'),
+                'vertical-armed': props.globals.getNode('/autopilot/textual/vertical-armed'),
+
+                'wind-heading': props.globals.getNode('/environment/wind-from-heading-deg'),
+                'wind-speed': props.globals.getNode('/environment/wind-speed-kt'),
             };
 
         me.master = canvas_group;
@@ -104,6 +115,7 @@ var PFD = {
         var keys = [
                 'horizon',
                 'horizon-pitch',
+                'slip-indicator',
                 'fpv',
                 'airspeed.digital',
                 'airspeed.knots.tape',
@@ -159,6 +171,14 @@ var PFD = {
                 'hsi.groundspeed-v.line',
                 'hsi.groundspeed-v.excess-pos',
                 'hsi.groundspeed-v.excess-neg',
+                'autothrottle.mode.active',
+                'autothrottle.mode.armed',
+                'autothrottle.engaged',
+                'autopilot.vertical-mode.active',
+                'autopilot.vertical-mode.armed',
+                'autopilot.lateral-mode.active',
+                'autopilot.lateral-mode.armed',
+                'autopilot.engaged',
                 'engine0.n1.pointer',
                 'engine0.n1.digital',
                 'engine0.n1.gauge',
@@ -183,6 +203,8 @@ var PFD = {
                 'engine3.n2.digital',
                 'engine3.off',
                 'engine3.augment',
+                'wind.speed.digital',
+                'wind.direction.arrow',
             ];
         foreach (var key; keys) {
             me.elems[key] = me.master.getElementById(key);
@@ -289,6 +311,42 @@ var PFD = {
             },
             1, 0);
         setlistener(
+            me.props['autothrottle-mode'],
+            func (node) {
+                var value = node.getValue();
+                me.elems['autothrottle.mode.active'].setText(value);
+            },
+            1, 0);
+        setlistener(
+            me.props['autothrottle-armed'],
+            func (node) { me.elems['autothrottle.mode.armed'].setText(node.getValue()); },
+            1, 0);
+        setlistener(
+            me.props['vertical-mode'],
+            func (node) { me.elems['autopilot.vertical-mode.active'].setText(node.getValue()); },
+            1, 0);
+        setlistener(
+            me.props['vertical-armed'],
+            func (node) { me.elems['autopilot.vertical-mode.armed'].setText(node.getValue()); },
+            1, 0);
+        setlistener(
+            me.props['lateral-mode'],
+            func (node) { me.elems['autopilot.lateral-mode.active'].setText(node.getValue()); },
+            1, 0);
+        setlistener(
+            me.props['lateral-armed'],
+            func (node) { me.elems['autopilot.lateral-mode.armed'].setText(node.getValue()); },
+            1, 0);
+        setlistener(
+            '/controls/autoflight/autothrottle-engage',
+            func (node) { me.elems['autothrottle.engaged'].setVisible(node.getBoolValue()); },
+            1, 0);
+        setlistener(
+            '/controls/autoflight/autopilot/engage',
+            func (node) { me.elems['autopilot.engaged'].setVisible(node.getBoolValue()); },
+            1, 0);
+
+        setlistener(
             '/instrumentation/altimeter/setting-hpa',
             func (node) {
                 var value = node.getValue();
@@ -375,6 +433,7 @@ var PFD = {
     update: func () {
         var bank = me.props['bank'].getValue() or 0;
         var pitch = me.props['pitch'].getValue() or 0;
+        var slip = me.props['slip'].getValue() or 0;
         var fpvV = me.props['fpv-v'].getValue() or 0;
         var fpvW = me.props['fpv-w'].getValue() or 0;
         var gsU = me.props['gs-u'].getValue() or 0;
@@ -388,10 +447,13 @@ var PFD = {
         var altitude = me.props['altitude'].getValue() or 0;
         var agl = me.props['altitude-agl'].getValue() or 0;
         var heading = me.props['heading'].getValue() or 0;
+        var windDir = me.props['wind-heading'].getValue() or 0;
+        var windSpeed = me.props['wind-speed'].getValue() or 0;
         var track = me.props['track'].getValue() or 0;
 
         me.elems['horizon-pitch'].setTranslation(0, pitch * 6.4);
         me.elems['horizon'].setRotation(-bank * D2R);
+        me.elems['slip-indicator'].setTranslation(slip * 6.4, 0);
         me.elems['fpv'].setTranslation(fpvV * 6.4, fpvW * 6.4);
         me.elems['altitude.digital.major'].setText(sprintf('%3.0f', altitude / 100));
         if (vspeed > 1) {
@@ -451,6 +513,9 @@ var PFD = {
             me.elems['engine' ~ i ~ '.n1.digital'].setText(sprintf('%3.0f', n1));
             me.elems['engine' ~ i ~ '.n2.digital'].setText(sprintf('%3.0f', n2));
         }
+
+        me.elems['wind.direction.arrow'].setRotation((windDir - heading) * D2R);
+        me.elems['wind.speed.digital'].setText(sprintf('%1.0f', windSpeed));
     },
 };
 

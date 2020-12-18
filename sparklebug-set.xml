@@ -332,6 +332,9 @@
         <pfd>
             <file>Nasal/Instrumentation/pfd.nas</file>
         </pfd>
+        <autopilot>
+            <file>Nasal/autopilot.nas</file>
+        </autopilot>
     </nasal>
 
     <!-- custom properties -->
@@ -408,4 +411,14 @@
             </alttape>
         </pfd>
     </instrumentation>
+    <autopilot>
+        <textual>
+            <autothrottle-mode type="string">-----</autothrottle-mode>
+            <lateral-mode type="string">-----</lateral-mode>
+            <vertical-mode type="string">-----</vertical-mode>
+            <autothrottle-armed type="string">-----</autothrottle-armed>
+            <lateral-armed type="string">-----</lateral-armed>
+            <vertical-armed type="string">-----</vertical-armed>
+        </textual>
+    </autopilot>
 </PropertyList>
