@@ -120,5 +120,5 @@ var updateElements = func () {
     setprop('/position/orbit/nu', elements.nu);
 };
 
-var timer = maketimer(1, func { updateElements(); });
+var timer = maketimer(0.1, func { updateElements(); });
 timer.start();

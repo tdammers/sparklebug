@@ -26,6 +26,7 @@ var Page = {
         m.elems = {};
         m.keys = [];
         m.listeners = {};
+        m.title = '-----';
         m.canvas_group = canvas_group;
         return m;
     },
@@ -58,14 +59,21 @@ var OrbitPage = {
     new: func (mfd) {
         var m = Page.new(mfd);
         m.parents = [OrbitPage, Page];
+        m.title = 'ORBIT';
         m.props['orbit-a'] = props.globals.getNode('/position/orbit/a');
         m.props['orbit-p'] = props.globals.getNode('/position/orbit/p');
         m.props['orbit-e'] = props.globals.getNode('/position/orbit/e');
         m.props['orbit-nu'] = props.globals.getNode('/position/orbit/nu');
+        m.elems['nu-pointer'] = m.canvas_group
+                                .createChild('path')
+                                .moveTo(512, 256)
+                                .lineTo(768, 256)
+                                .setCenter(512, 256)
+                                .setColor(255, 255, 0, 1);
         m.elems['orbit'] = m.canvas_group
                                 .createChild('path')
                                 .setColor(255, 255, 0, 1);
-        m.elems['karmann'] = m.canvas_group
+        m.elems['karman'] = m.canvas_group
                                 .createChild('path')
                                 .setColorFill(0, 255, 255, 0.5)
                                 .circle(128 * (earthRadius + 100000.0) / earthRadius, 512, 256);
@@ -74,6 +82,20 @@ var OrbitPage = {
                                 .setColorFill(0, 0, 64, 1)
                                 .setColor(0, 0, 255, 1)
                                 .circle(128, 512, 256);
+        m.elems['perigee-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationMono-Regular')
+                                .setFontSize(12, 1)
+                                .setAlignment('left-center')
+                                .setTranslation(768, 256)
+                                .setColor(255, 255, 0, 1);
+        m.elems['apogee-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationMono-Regular')
+                                .setFontSize(12, 1)
+                                .setAlignment('right-center')
+                                .setTranslation(256, 256)
+                                .setColor(255, 255, 0, 1);
         return m;
     },
 
@@ -81,8 +103,11 @@ var OrbitPage = {
         var a = me.props['orbit-a'].getValue();
         var p = me.props['orbit-p'].getValue();
         var e = me.props['orbit-e'].getValue();
+        var nu = me.props['orbit-nu'].getValue();
         var c = a * e;
         var b = math.sqrt(a * a - c * c);
+        me.elems['nu-pointer']
+            .setRotation(nu);
         me.elems['orbit']
             .reset()
             .ellipse(
@@ -90,6 +115,8 @@ var OrbitPage = {
                 b * 128 / earthRadius,
                 512 + c * 128 / earthRadius, 
                 256);
+        me.elems['perigee-digital'].setText(sprintf('%6.1f', a - c));
+        me.elems['apogee-digital'].setText(sprintf('%6.1f', a + c));
     },
 };
 
@@ -107,7 +134,13 @@ var MFD = {
         if (activePage != nil) activePage.deactivate();
         me.activePage = i;
         activePage = me.pages[me.activePage];
-        if (activePage != nil) activePage.activate();
+        if (activePage != nil) {
+            activePage.activate();
+            me.titleElem.setText(activePage.title);
+        }
+        else {
+            me.titleElem.setText('-----');
+        }
     },
 
     addPage: func (cls) {
@@ -129,6 +162,12 @@ var MFD = {
 
         me.addPage(OrbitPage);
         me.setActivePage(0);
+        me.titleElem =
+            me.master.createChild('text')
+                .setColor(0, 255, 0, 1)
+                .setAlignment('center-top')
+                .setFont('LiberationMono-Regular')
+                .setFontSize(16, 1);
 
         return me;
     },
