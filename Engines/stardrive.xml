@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <rocket_engine name="sparklebug-stardrive">
-    <isp>30000</isp>
+    <!-- TODO: nerf back to 30000 and use 2-3 engines -->
+    <isp>60000</isp>
     <maxthrottle>1.00</maxthrottle>
     <minthrottle>0.60</minthrottle>
     <sloxiflowmax>11.91</sloxiflowmax>

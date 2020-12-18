@@ -133,9 +133,13 @@
                 <path>Systems/autopilot.xml</path>
             </autopilot>
             <autopilot>
+                <name>autopilot</name>
+                <path>Systems/orbit.xml</path>
+            </autopilot>
+            <property-rule>
                 <name>PFD</name>
                 <path>Systems/pfd.xml</path>
-            </autopilot>
+            </property-rule>
         </systems>
     </sim>
 
@@ -332,12 +336,25 @@
         <pfd>
             <file>Nasal/Instrumentation/pfd.nas</file>
         </pfd>
+        <mfd>
+            <file>Nasal/Instrumentation/mfd.nas</file>
+        </mfd>
         <autopilot>
             <file>Nasal/autopilot.nas</file>
         </autopilot>
+        <orbit>
+            <file>Nasal/orbit.nas</file>
+        </orbit>
     </nasal>
 
     <!-- custom properties -->
+    <position>
+        <orbit>
+            <a type="double">0</a>
+            <e type="double">0</e>
+            <p type="double">0</p>
+        </orbit>
+    </position>
     <fcs>
         <!-- FBW law:
              0 = direct (input controls RCS thrusters and engine pitch directly)
@@ -410,6 +427,9 @@
                 <offset-ft type="double">0</offset-ft>
             </alttape>
         </pfd>
+        <mfd>
+            <page type="int">0</page>
+        </mfd>
     </instrumentation>
     <autopilot>
         <textual>

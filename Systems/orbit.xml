@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<!-- Calculate orbital parameters -->
+
+<!--
+    v: /fdm/jsbsim/velocities/eci-{x,y,z}-fps
+    r: /fdm/jsbsim/position/eci-{x,y,z}-ft
+    weight: /fdm/jsbsim/inertia/weight-lbs
+    g: /environment/gravitational-acceleration-mps2
+-->
+
+<PropertyList>
+    <!-- convert ECI coordinates into metric -->
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/velocities/eci-x-fps</input>
+        <output>/position/orbit/eci-vx</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/velocities/eci-y-fps</input>
+        <output>/position/orbit/eci-vy</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/velocities/eci-z-fps</input>
+        <output>/position/orbit/eci-vz</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/position/eci-x-ft</input>
+        <output>/position/orbit/eci-x</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/position/eci-y-ft</input>
+        <output>/position/orbit/eci-y</output>
+    </filter>
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>/fdm/jsbsim/position/eci-z-ft</input>
+        <output>/position/orbit/eci-z</output>
+    </filter>
+</PropertyList>
