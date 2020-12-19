@@ -64,34 +64,37 @@ var OrbitPage = {
         m.props['orbit-p'] = props.globals.getNode('/position/orbit/p');
         m.props['orbit-e'] = props.globals.getNode('/position/orbit/e');
         m.props['orbit-nu'] = props.globals.getNode('/position/orbit/nu');
-        m.elems['nu-pointer'] = m.canvas_group
+        m.elems['viz'] = m.canvas_group
+                                .createChild('group')
+                                .setCenter(512, 256);
+        m.elems['nu-pointer'] = m.elems['viz']
                                 .createChild('path')
                                 .moveTo(512, 256)
                                 .lineTo(256, 256)
                                 .setCenter(512, 256)
                                 .setColor(255, 255, 0, 1);
-        m.elems['karman'] = m.canvas_group
+        m.elems['karman'] = m.elems['viz']
                                 .createChild('path')
                                 .setColorFill(0, 255, 255, 0.5)
                                 .circle(128 * (earthRadius + 100000.0) / earthRadius, 512, 256);
-        m.elems['earth'] = m.canvas_group
+        m.elems['earth'] = m.elems['viz']
                                 .createChild('path')
                                 .setColorFill(0, 0, 64, 1)
                                 .setColor(0, 0, 255, 1)
                                 .circle(128, 512, 256);
-        m.elems['orbit'] = m.canvas_group
+        m.elems['orbit'] = m.elems['viz']
                                 .createChild('path')
                                 .setColor(255, 255, 0, 1);
         m.elems['perigee-digital'] = m.canvas_group
                                 .createChild('text')
-                                .setFont('LiberationMono-Regular')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
                                 .setFontSize(12, 1)
                                 .setAlignment('left-center')
                                 .setTranslation(768, 256)
                                 .setColor(255, 255, 0, 1);
         m.elems['apogee-digital'] = m.canvas_group
                                 .createChild('text')
-                                .setFont('LiberationMono-Regular')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
                                 .setFontSize(12, 1)
                                 .setAlignment('right-center')
                                 .setTranslation(256, 256)
@@ -106,6 +109,8 @@ var OrbitPage = {
         var nu = me.props['orbit-nu'].getValue();
         var c = a * e;
         var b = math.sqrt(a * a - c * c);
+        me.elems['viz']
+            .setRotation(-nu);
         me.elems['nu-pointer']
             .setRotation(nu);
         me.elems['orbit']
@@ -165,8 +170,9 @@ var MFD = {
             me.master.createChild('text')
                 .setColor(0, 255, 0, 1)
                 .setAlignment('center-top')
-                .setFont('LiberationMono-Regular')
-                .setFontSize(16, 1);
+                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                .setFontSize(16, 1)
+                .setTranslation(512, 10);
         me.setActivePage(0);
 
         return me;

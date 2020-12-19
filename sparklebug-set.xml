@@ -354,6 +354,11 @@
             <e type="double">0</e>
             <p type="double">0</p>
             <nu type="double">0</nu>
+            <h>
+                <eci-x type="double">0</eci-x>
+                <eci-y type="double">0</eci-y>
+                <eci-z type="double">0</eci-z>
+            </h>
         </orbit>
     </position>
     <fcs>

@@ -94,6 +94,7 @@ var elementsFromState = func (r, v) {
         'p': p,
         'i': i,
         'nu': nu,
+        'h': h,
     };
 };
 
@@ -109,7 +110,6 @@ var updateElements = func () {
         getprop('/position/orbit/eci-vz'),
     ];
     if (r[0] == nil or r[1] == nil or r[2] == nil or v[0] == nil or v[1] == nil or v[2] == nil) {
-        debug.dump(r, v);
         return;
     }
     var elements = elementsFromState(r, v);
@@ -118,6 +118,9 @@ var updateElements = func () {
     setprop('/position/orbit/p', elements.p);
     setprop('/position/orbit/i', elements.i);
     setprop('/position/orbit/nu', elements.nu);
+    setprop('/position/orbit/h/eci-x', elements.h[0]);
+    setprop('/position/orbit/h/eci-y', elements.h[1]);
+    setprop('/position/orbit/h/eci-z', elements.h[2]);
 };
 
 var timer = maketimer(0.1, func { updateElements(); });
