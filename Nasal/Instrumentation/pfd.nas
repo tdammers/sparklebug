@@ -2,6 +2,7 @@
 
 var pfd_display = [nil, nil];
 var pfd = [nil, nil];
+var epsilon = 1e-10;
 
 var clipElemTo = func (clippee, clipref) {
     var tranRect = clipref.getTransformedBounds();
@@ -68,6 +69,9 @@ var PFD = {
                 'pitch': props.globals.getNode('/orientation/pitch-deg'),
                 'fpv-v': props.globals.getNode('/instrumentation/pfd/fpv/v-deg'),
                 'fpv-w': props.globals.getNode('/instrumentation/pfd/fpv/w-deg'),
+                'spd-u': props.globals.getNode('/velocities/uBody-fps'),
+                'spd-v': props.globals.getNode('/velocities/vBody-fps'),
+                'spd-w': props.globals.getNode('/velocities/wBody-fps'),
                 'gs-u': props.globals.getNode('/instrumentation/pfd/ground-track/u'),
                 'gs-v': props.globals.getNode('/instrumentation/pfd/ground-track/v'),
                 'slip': props.globals.getNode('/instrumentation/slip-skid-ball/indicated-slip-skid'),
@@ -116,7 +120,12 @@ var PFD = {
                 'horizon',
                 'horizon-pitch',
                 'slip-indicator',
-                'fpv',
+                'fpv.prograde',
+                'fpv.retrograde',
+                'fpv.normal',
+                'fpv.antinormal',
+                'fpv.radial',
+                'fpv.antiradial',
                 'airspeed.digital',
                 'airspeed.knots.tape',
                 'airspeed.kms.tape',
@@ -434,8 +443,9 @@ var PFD = {
         var bank = me.props['bank'].getValue() or 0;
         var pitch = me.props['pitch'].getValue() or 0;
         var slip = me.props['slip'].getValue() or 0;
-        var fpvV = me.props['fpv-v'].getValue() or 0;
-        var fpvW = me.props['fpv-w'].getValue() or 0;
+        var spdU = me.props['spd-u'].getValue() or 0;
+        var spdV = me.props['spd-v'].getValue() or 0;
+        var spdW = me.props['spd-w'].getValue() or 0;
         var gsU = me.props['gs-u'].getValue() or 0;
         var gsV = me.props['gs-v'].getValue() or 0;
         var airspeed = me.props['ias'].getValue() or 0;
@@ -454,7 +464,30 @@ var PFD = {
         me.elems['horizon-pitch'].setTranslation(0, pitch * 6.4);
         me.elems['horizon'].setRotation(-bank * D2R);
         me.elems['slip-indicator'].setTranslation(slip * 6.4, 0);
-        me.elems['fpv'].setTranslation(fpvV * 6.4, fpvW * 6.4);
+
+        if (spdU < epsilon) {
+            me.elems['fpv.prograde']
+                .hide();
+        }
+        else {
+            me.elems['fpv.prograde']
+                .show()
+                .setTranslation(spdV / spdU * 384.0, spdW / spdU * 384.0);
+        }
+        if (spdU > -epsilon) {
+            me.elems['fpv.retrograde']
+                .hide();
+        }
+        else {
+            me.elems['fpv.retrograde']
+                .show()
+                .setTranslation(spdV / spdU * 384.0, spdW / spdU * 384.0);
+        }
+        me.elems['fpv.normal'].hide();
+        me.elems['fpv.antinormal'].hide();
+        me.elems['fpv.radial'].hide();
+        me.elems['fpv.antiradial'].hide();
+
         me.elems['altitude.digital.major'].setText(sprintf('%3.0f', altitude / 100));
         if (vspeed > 1) {
             me.elems['vspeed.digital.positive'].setText(sprintf('%+04.0f', vspeed)).show();
@@ -483,9 +516,9 @@ var PFD = {
             .setTranslation(0, orbitalv * 160.0)
             .setVisible(airspeed >= 1500);
         me.elems['orbitalv.digital'].setText(sprintf('%5.2f', orbitalv));
-        var ovdX = math.min(168, math.max(-168, fpvV * 6.4));
-        var ovdY = math.min(186, math.max(-186, fpvW * 6.4 - 16));
-        me.elems['orbitalv.digital'].setTranslation(ovdX, ovdY);
+        # var ovdX = math.min(168, math.max(-168, fpvV * 6.4));
+        # var ovdY = math.min(186, math.max(-186, fpvW * 6.4 - 16));
+        # me.elems['orbitalv.digital'].setTranslation(ovdX, ovdY);
         me.elems['mach.digital'].setText(sprintf('%5.2fM', mach));
 
         me.elems['hsi.groundspeed-u.line'].setTranslation(0, gsU * -3.2)

@@ -64,9 +64,15 @@ var OrbitPage = {
         m.props['orbit-p'] = props.globals.getNode('/position/orbit/p');
         m.props['orbit-e'] = props.globals.getNode('/position/orbit/e');
         m.props['orbit-nu'] = props.globals.getNode('/position/orbit/nu');
+        m.props['orbit-height'] = props.globals.getNode('/position/orbit/height-m');
         m.elems['viz'] = m.canvas_group
                                 .createChild('group')
                                 .setCenter(512, 256);
+        m.elems['major-axis-marker'] = m.elems['viz']
+                                .createChild('path')
+                                .moveTo(256, 256)
+                                .lineTo(768, 256)
+                                .setColor(0, 128, 0, 1);
         m.elems['nu-pointer'] = m.elems['viz']
                                 .createChild('path')
                                 .moveTo(512, 256)
@@ -85,19 +91,47 @@ var OrbitPage = {
         m.elems['orbit'] = m.elems['viz']
                                 .createChild('path')
                                 .setColor(255, 255, 0, 1);
-        m.elems['perigee-digital'] = m.canvas_group
-                                .createChild('text')
-                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
-                                .setFontSize(12, 1)
-                                .setAlignment('left-center')
-                                .setTranslation(768, 256)
-                                .setColor(255, 255, 0, 1);
         m.elems['apogee-digital'] = m.canvas_group
                                 .createChild('text')
                                 .setFont('LiberationFonts/LiberationMono-Regular.ttf')
-                                .setFontSize(12, 1)
-                                .setAlignment('right-center')
-                                .setTranslation(256, 256)
+                                .setFontSize(16, 1)
+                                .setAlignment('left-bottom')
+                                .setTranslation(768, 252)
+                                .setColor(0, 255, 0, 1);
+        m.elems['perigee-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                                .setFontSize(16, 1)
+                                .setAlignment('right-bottom')
+                                .setTranslation(256, 252)
+                                .setColor(0, 255, 0, 1);
+        m.elems['apogee-agl-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                                .setFontSize(16, 1)
+                                .setAlignment('left-top')
+                                .setTranslation(768, 260)
+                                .setColor(0, 192, 0, 1);
+        m.elems['perigee-agl-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                                .setFontSize(16, 1)
+                                .setAlignment('right-top')
+                                .setTranslation(256, 260)
+                                .setColor(0, 192, 0, 1);
+        m.elems['orbital-height-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                                .setFontSize(16, 1)
+                                .setAlignment('center-bottom')
+                                .setTranslation(512, 252)
+                                .setColor(255, 255, 0, 1);
+        m.elems['orbital-height-agl-digital'] = m.canvas_group
+                                .createChild('text')
+                                .setFont('LiberationFonts/LiberationMono-Regular.ttf')
+                                .setFontSize(16, 1)
+                                .setAlignment('center-top')
+                                .setTranslation(512, 260)
                                 .setColor(255, 255, 0, 1);
         return m;
     },
@@ -107,10 +141,9 @@ var OrbitPage = {
         var p = me.props['orbit-p'].getValue();
         var e = me.props['orbit-e'].getValue();
         var nu = me.props['orbit-nu'].getValue();
+        var height = me.props['orbit-height'].getValue();
         var c = a * e;
         var b = math.sqrt(a * a - c * c);
-        me.elems['viz']
-            .setRotation(-nu);
         me.elems['nu-pointer']
             .setRotation(nu);
         me.elems['orbit']
@@ -121,7 +154,11 @@ var OrbitPage = {
                 512 + c * 128 / earthRadius, 
                 256);
         me.elems['perigee-digital'].setText(sprintf('%6.1f', (a - c) / 1000));
+        me.elems['perigee-agl-digital'].setText(sprintf('%6.1f', (a - c - earthRadius) / 1000));
         me.elems['apogee-digital'].setText(sprintf('%6.1f', (a + c) / 1000));
+        me.elems['apogee-agl-digital'].setText(sprintf('%6.1f', (a + c - earthRadius) / 1000));
+        me.elems['orbital-height-digital'].setText(sprintf('%6.1f', height / 1000));
+        me.elems['orbital-height-agl-digital'].setText(sprintf('%6.1f', (height - earthRadius) / 1000));
     },
 };
 
@@ -171,8 +208,8 @@ var MFD = {
                 .setColor(0, 255, 0, 1)
                 .setAlignment('center-top')
                 .setFont('LiberationFonts/LiberationMono-Regular.ttf')
-                .setFontSize(16, 1)
-                .setTranslation(512, 10);
+                .setFontSize(24, 1)
+                .setTranslation(512, 8);
         me.setActivePage(0);
 
         return me;

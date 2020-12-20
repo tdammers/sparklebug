@@ -47,4 +47,19 @@
         <input>/fdm/jsbsim/position/eci-z-ft</input>
         <output>/position/orbit/eci-z</output>
     </filter>
+
+    <!-- calculate current orbit height -->
+    <filter>
+        <type>gain</type>
+        <gain>0.3048</gain>
+        <input>
+            <expression>
+                <sum>
+                    <property>/position/altitude-ft</property>
+                    <property>/position/sea-level-radius-ft</property>
+                </sum>
+            </expression>
+        </input>
+        <output>/position/orbit/height-m</output>
+    </filter>
 </PropertyList>
